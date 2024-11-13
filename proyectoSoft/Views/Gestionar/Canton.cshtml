@@ -1,0 +1,296 @@
+﻿@{
+    ViewBag.Title = "Canton";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Administrar</a></li>
+    <li class="breadcrumb-item active">Cantones</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-city me-1"></i> Lista de Cantones
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-6">
+                <button type="button" class="btn btn-success" onclick="abrirModal(null)">Agregar</button>
+            </div>
+            <div class="col-6 text-end">
+                <label class="btn btn-primary">
+                    <i class="fas fa-upload"></i> Cargar CSV
+                    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="uploadCSV()">
+                </label>
+                <button type="button" class="btn btn-secondary ms-2" onclick="descargarPlantilla()">
+                    <i class="fas fa-download"></i> Descargar Plantilla
+                </button>
+            </div>
+        </div>
+
+        <hr />
+
+        <table id="tabla" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Provincia</th>
+                    <th></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Cantón</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="CantonID" type="hidden" value="0" />
+                <div class="row g-2">
+                    <div class="col-12">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control validar-letras" id="descripcion" autocomplete="off">
+                    </div>
+                    <div class="col-12">
+                        <label for="provinciaID" class="form-label">Provincia</label>
+                        <select class="form-select" id="provinciaID" aria-label="Default select example">
+                            <option selected value="0">Seleccione una Provincia</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="mensajeError" class="alert alert-danger" role="alert" style="display:none;">
+                            Los campos no pueden estar vacíos.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<button id="stopTutorial" class="btn btn-danger mt-3">Detener Tutorial</button>
+
+<script>
+    $('#stopTutorial').click(function () {
+        introJs().exit();
+    });
+</script>
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script>
+    $('#stopTutorial').click(function () {
+    introJs().exit();
+    });
+    </script>
+    <script>
+        var tabladata;
+        var filaSeleccionada;
+
+        $(document).ready(function () {
+            tabladata = $("#tabla").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: '@Url.Action("ListarCanton", "Gestionar")',
+                    type: "GET",
+                    datatype: "json"
+                },
+                "columns": [
+                    { "data": "Descripcion" },
+                    { "data": "ProvinciaDescripcion" },
+                    {
+                        "defaultContent": '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
+                                          '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "90px"
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+
+            $("#tabla tbody").on("click", ".btn-editar", function () {
+                filaSeleccionada = $(this).closest("tr");
+                var data = tabladata.row(filaSeleccionada).data();
+                abrirModal(data);
+            });
+
+            $("#tabla tbody").on("click", ".btn-eliminar", function () {
+                var filaseleccionada = $(this).closest("tr");
+                var data = tabladata.row(filaseleccionada).data();
+                Swal.fire({
+                    title: "¿Estás seguro?",
+                    text: "¡Se borrarán todos los distritos relacionados!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-danger",
+                    confirmButtonText: "¡Sí, bórralo!",
+                    cancelButtonText: "Cancelar",
+                    closeOnConfirm: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '@Url.Action("EliminarCanton", "Gestionar")',
+                            type: "POST",
+                            data: JSON.stringify({ cantonID: data.CantonID }),
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                if (data.resultado) {
+                                    tabladata.row(filaseleccionada).remove().draw();
+                                    Swal.fire("¡Eliminado!", "El cantón ha sido eliminado.", "success");
+                                } else {
+                                    Swal.fire("Error", data.mensaje, "error");
+                                }
+                            },
+                            error: function (error) {
+                                Swal.fire("Error", "Hubo un problema con la solicitud.", "error");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        function abrirModal(json) {
+            $("#CantonID").val(0);
+            $("#descripcion").val("");
+            $("#provinciaID").val(0);
+            $("#mensajeError").hide();
+
+            if (json != null) {
+                $("#CantonID").val(json.CantonID);
+                $("#descripcion").val(json.Descripcion);
+                $("#provinciaID").val(json.ProvinciaID);
+                $("#exampleModalLabel").text("Editar Cantón");
+            } else {
+                $("#exampleModalLabel").text("Agregar Cantón");
+            }
+
+            fetchDropdownData();
+            $("#FormModal").modal("show");
+        }
+
+        function populateDropdown(selector, data) {
+            var dropdown = $(selector);
+            dropdown.empty();
+            dropdown.append('<option value="0">Seleccione</option>');
+            $.each(data, function (index, item) {
+                dropdown.append($('<option>', {
+                    value: item.ProvinciaID,
+                    text: item.Descripcion
+                }));
+            });
+        }
+
+        function fetchDropdownData() {
+            $.get('@Url.Action("ListarProvincias", "Gestionar")', function (data) {
+                populateDropdown("#provinciaID", data);
+            });
+        }
+
+        function Guardar() {
+            var Canton = {
+                CantonID: parseInt($("#CantonID").val()),
+                Descripcion: $("#descripcion").val(),
+                ProvinciaID: parseInt($("#provinciaID").val()),
+                Activo: true // Siempre activo por defecto
+            };
+
+            if (Canton.Descripcion === "" || Canton.ProvinciaID === 0) {
+                $("#mensajeError").show();
+                return;
+            } else {
+                $("#mensajeError").hide();
+            }
+
+            $(".modal-body").LoadingOverlay("show");
+
+            $.ajax({
+                url: '@Url.Action("GuardarCanton", "Gestionar")',
+                type: "POST",
+                data: JSON.stringify({ canton: Canton }),
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    $(".modal-body").LoadingOverlay("hide");
+                    if (Canton.CantonID == 0) {
+                        // Nuevo Cantón
+                        if (data.resultado != 0) {
+                            Canton.CantonID = data.resultado;
+                            tabladata.row.add(Canton).draw(false);
+                            $("#FormModal").modal("hide");
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+                    } else {
+                        // Editar Cantón
+                        if (data.resultado) {
+                            tabladata.row(filaSeleccionada).data(Canton).draw(false);
+                            filaSeleccionada = null;
+                            $("#FormModal").modal("hide");
+                        } else {
+                            $("#mensajeError").text(data.mensaje);
+                            $("#mensajeError").show();
+                        }
+                    }
+                },
+                error: function (error) {
+                    $(".modal-body").LoadingOverlay("hide");
+                    $("#mensajeError").text("Error Ajax");
+                    $("#mensajeError").show();
+                }
+            });
+        }
+
+        function uploadCSV() {
+            var fileInput = document.getElementById('csvFileInput');
+            var file = fileInput.files[0];
+
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var csvData = e.target.result;
+                    $.ajax({
+                        url: '@Url.Action("CargarCantonesDesdeCSV", "Gestionar")',
+                        type: "POST",
+                        data: { csvData: csvData },
+                        success: function(data) {
+                            if (data.resultado) {
+                                tabladata.ajax.reload();
+                                Swal.fire("¡Éxito!", "Cantones cargados correctamente.", "success");
+                            } else {
+                                Swal.fire("Error", data.mensaje, "error");
+                            }
+                        },
+                        error: function(error) {
+                            Swal.fire("Error", "Hubo un problema con la carga del archivo CSV.", "error");
+                        }
+                    });
+                };
+                reader.readAsText(file);
+            }
+        }
+
+        function descargarPlantilla() {
+            window.location.href = '@Url.Action("DescargarPlantillaCSVCanton", "Gestionar")';
+        }
+    </script>
+}

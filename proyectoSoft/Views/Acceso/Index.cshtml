@@ -1,0 +1,113 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inicio Sesion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/introjs.min.css" rel="stylesheet">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+
+</head>
+<body class="bg-primary">
+    <div id="layoutAuthentication">
+        <div id="layoutAuthentication_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar sesión</h3></div>
+                                <div class="card-body">
+                                    <form id="loginForm" action="@Url.Action("Index","Acceso")" method="post">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputEmail" name="correo" type="email" placeholder="Dunamis@correo.com" />
+                                            <label for="inputEmail">Correo</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control" id="inputPassword" name="clave" type="password" placeholder="Contraseña" />
+                                            <label for="inputPassword">Contraseña</label>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                                        </div>
+                                        <div>
+                                            @{
+                                                if (ViewBag.Error != null)
+                                                {
+                                                    <div class="form-floating mb-3">
+                                                        <div class="alert alert-danger" role="alert">
+                                                            @ViewBag.Error
+                                                        </div>
+                                                    </div>
+                                                }
+                                            }
+
+                                        </div>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+        
+
+    </div>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
+    @section Scripts {
+
+
+        <script>
+            $(document).ready(function () {
+                // Botón para iniciar el tutorial
+                $('#startTutorial').click(function () {
+                    introJs().setOptions({
+                        steps: [
+                            {
+                                intro: "Bienvenido al tutorial de 'Inicio de Sesión'. Aquí te mostramos cómo iniciar sesión en el sistema."
+                            },
+                            {
+                                element: '#inputEmail',
+                                intro: "Ingresa tu correo electrónico aquí."
+                            },
+                            {
+                                element: '#inputPassword',
+                                intro: "Ingresa tu contraseña aquí."
+                            },
+                            {
+                                element: '#loginForm button[type="submit"]',
+                                intro: "Haz clic en este botón para iniciar sesión después de ingresar tus credenciales."
+                            },
+                            {
+                                element: '.alert-danger',
+                                intro: "Si tus credenciales son incorrectas, verás un mensaje de error aquí."
+                            },
+                            {
+                                intro: "Esto concluye el tutorial de 'Inicio de Sesión'. ¡Gracias por tu atención!"
+                            }
+                        ],
+                        showProgress: true,
+                        exitOnOverlayClick: false,
+                        exitOnEsc: true,
+                        showStepNumbers: true,
+                        nextLabel: 'Siguiente',
+                        prevLabel: 'Anterior',
+                        skipLabel: 'Salir',
+                        doneLabel: 'Finalizar'
+                    }).start();
+                });
+            });
+        </script>
+    }
+</body>
+</html>
