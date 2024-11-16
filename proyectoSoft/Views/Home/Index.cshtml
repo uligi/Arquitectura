@@ -4,27 +4,27 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
-   
 </head>
 <div class="container mt-5">
     <section class="text-center mb-5">
-        <h1 id="dunamisTitle">Sistema de Cotización de Cargas Dunamis</h1>
-        <button id="startTutorial" class="btn btn-primary mt-3">Iniciar Tutorial</button>
+        <h1 id="patitosTitle" style="color: #000;">Sistema Financiero de Patitos Financieros S.A.</h1>
+        <button id="startTutorial" class="btn btn-warning mt-3" style="color: #000;">Iniciar Tutorial</button>
     </section>
 
-    <section class="card mx-auto" style="max-width: 800px;">
-        <div class="card-header text-white bg-dark">
+    <section class="card mx-auto" style="max-width: 800px; background-color: #FFF5E1;">
+        <div class="card-header text-dark bg-warning">
             <h2>Acerca de la Empresa</h2>
         </div>
-        <div class="card-body">
+        <div class="card-body text-center">
+            <img src="~/Imagenes/Ilustración254.png" alt="Logo de Patitos Financieros S.A." style="max-width: 200px; margin-bottom: 20px;">
             <p>
-                DUNAMIS SA es una empresa de transporte especializada en la gestión de cargas de diversa índole, incluyendo carga fabril, perecedera, liviana y pesada.
+                Patitos Financieros S.A. es una empresa dedicada a la gestión y control financiero, especializada en la contabilidad de costos, control de gastos y ventas, y la generación de reportes detallados de proyecciones.
             </p>
             <p>
-                Nuestra misión es ofrecer un servicio eficiente y preciso, automatizando los cálculos de tarifas, descuentos, e impuestos, y generando reportes detallados para facilitar la toma de decisiones.
+                Nuestra misión es proporcionar una suite financiera que automatice los procesos contables y facilite la toma de decisiones a través de gráficos y reportes intuitivos, garantizando precisión y eficiencia.
             </p>
             <p>
-                Nos comprometemos a brindar una experiencia amigable para nuestros usuarios, incluso para aquellos con poca o ninguna experiencia en sistemas informáticos, asegurando una gestión de transporte sin errores y confiable.
+                Estamos comprometidos a ofrecer una experiencia de usuario sencilla y accesible, asegurando que los módulos clave, como el control de cuentas y reportes de proyecciones, sean de fácil acceso y uso exclusivo de gerentes y analistas autorizados.
             </p>
         </div>
     </section>
@@ -32,22 +32,39 @@
 
 <style>
     body {
-        background-color: #FCFDF4;
+        background-color: #FFF9E6;
+    }
+
+    #patitosTitle {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: bold;
     }
 
     .card {
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
     }
 
     .card-header {
         font-size: 1.5em;
-        padding: 10px 20px;
+        padding: 12px 24px;
+        border-bottom: 2px solid #000;
     }
 
     .card-body {
-        padding: 20px;
+        padding: 24px;
         font-size: 1.1em;
+        color: #333;
     }
-</style>
 
+    button.btn-warning {
+        background-color: #FFD700;
+        border: none;
+        transition: background-color 0.3s;
+    }
+
+        button.btn-warning:hover {
+            background-color: #FFA500;
+            color: #FFF;
+        }
+</style>
