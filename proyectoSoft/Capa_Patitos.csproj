@@ -120,7 +120,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\css\Factura.css" />
     <Compile Include="Controllers\AccesoController.cs" />
-    <Compile Include="Controllers\AdministrarController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">

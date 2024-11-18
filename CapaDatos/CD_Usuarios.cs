@@ -28,19 +28,19 @@ namespace CapaDatos
                                 UsuarioID = Convert.ToInt32(dr["UsuarioID"]),
                                 Cedula = Convert.ToInt32(dr["Cedula"]),
                                 Contrasena = dr["Contrasena"].ToString(),
-                                RestablecerContrasena = Convert.ToBoolean(dr["RestablecerContraseña"]),
+                                RestablecerContrasena = Convert.ToBoolean(dr["RestablecerContrasena"]),
                                 Activo = Convert.ToBoolean(dr["Activo"]),
                                 FechaCreacion = Convert.ToDateTime(dr["FechaCreacion"]),
                                 Rol = new Roles
                                 {
                                     RolID = Convert.ToInt32(dr["RolID"]),
-                                    Rol = dr["NombreRol"].ToString()
+                                    Rol = dr["Rol"].ToString() // Corregido a "Rol"
                                 },
                                 Persona = new Persona
                                 {
                                     Cedula = Convert.ToInt32(dr["Cedula"]),
                                     Nombre = dr["Nombre"].ToString(),
-                                    Apellido1 = dr["Apellido"].ToString(), // Ajuste si es un solo campo de apellido
+                                    Apellido1 = dr["Apellido"].ToString(), // Ajustado si es solo un campo
                                     Correo = dr["Correo"].ToString()
                                 }
                             });
@@ -50,10 +50,12 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Error: " + ex.Message); // Para depurar el error
                 lista = new List<Usuarios>();
             }
             return lista;
         }
+
 
         // Método para registrar un usuario
         public int Registrar(Usuarios obj, out string Mensaje)
