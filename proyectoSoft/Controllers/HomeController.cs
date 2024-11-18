@@ -14,10 +14,7 @@ namespace Administradores.Controllers
         {
             return View();
         }
-        public ActionResult Usuarios()
-        {
-            return View();
-        }
+     
 
 
     }
