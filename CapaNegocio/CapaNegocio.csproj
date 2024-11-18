@@ -71,31 +71,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CN_Canton.cs" />
-    <Compile Include="CN_Correo.cs" />
-    <Compile Include="CN_CotizarCarga.cs" />
-    <Compile Include="CN_Descuento.cs" />
-    <Compile Include="CN_DetalleDeFactura.cs" />
-    <Compile Include="CN_Direccion.cs" />
-    <Compile Include="CN_Distrito.cs" />
-    <Compile Include="CN_Factura.cs" />
-    <Compile Include="CN_Impuesto.cs" />
-    <Compile Include="CN_Pago.cs" />
-    <Compile Include="CN_Permisos.cs" />
     <Compile Include="CN_Persona.cs" />
-    <Compile Include="CN_Provincia.cs" />
     <Compile Include="CN_Recursos.cs" />
-    <Compile Include="CN_Reporte.cs" />
     <Compile Include="CN_Roles.cs" />
-    <Compile Include="CN_Telefono.cs" />
-    <Compile Include="CN_TipoCorreo.cs" />
-    <Compile Include="CN_TipoCliente.cs" />
-    <Compile Include="CN_TipoPago.cs" />
-    <Compile Include="CN_TiposDeCarga.cs" />
-    <Compile Include="CN_TipoImpuesto.cs" />
-    <Compile Include="CN_TipoDescuento.cs" />
-    <Compile Include="CN_TipoTelefono.cs" />
-    <Compile Include="CN_Cliente.cs" />
     <Compile Include="CN_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
