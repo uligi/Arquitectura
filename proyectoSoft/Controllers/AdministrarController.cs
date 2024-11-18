@@ -1,71 +1,130 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using CapaEntidad;
-using CapaNegocio;
+﻿using CapaEntidad;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
-namespace Administradores.Controllers
+namespace CapaDatos
 {
-    [Authorize]
-    public class AdministrarController : Controller
+    public class CD_Roles
     {
-        // GET: Roles
-        public ActionResult Roles()
+        // Método para listar roles
+        public List<Roles> Listar()
         {
-            return View();
-        }
-
-        [HttpGet]
-        public JsonResult ListarRoles()
-        {
-            List<Roles> lista = new CN_Roles().Listar();
-            var result = lista.Select(r => new
+            List<Roles> lista = new List<Roles>();
+            try
             {
-                r.RolID,
-                r.Rol,
-                r.PermisoID,
-                TipoRolDescripcion = r.TipoRolDescripcion
-            }).ToList();
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
+                using (SqlConnection oConexion = new SqlConnection(Conexion.conexion))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_ListarRoles", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    oConexion.Open();
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+                        while (dr.Read())
+                        {
+                            lista.Add(new Roles()
+                            {
+                                RolID = Convert.ToInt32(dr["RolID"]),
+                                Rol = dr["NombreRol"].ToString(),
+                                Descripcion = dr["Descripcion"].ToString()
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lista = new List<Roles>();
+            }
+            return lista;
         }
 
-        [HttpGet]
-        public JsonResult ListarPermisos()
+        // Método para registrar un nuevo rol
+        public int Registrar(Roles obj, out string Mensaje)
         {
-            List<Permisos> lista = new CN_Permisos().Listar();
-            return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
+            int resultado = 0;
+            Mensaje = string.Empty;
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.conexion))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_RegistrarRol", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@NombreRol", obj.Rol);
+                    cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
+                    cmd.Parameters.Add("@Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    resultado = Convert.ToInt32(cmd.Parameters["@Resultado"].Value);
+                    Mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = 0;
+                Mensaje = ex.Message;
+            }
+            return resultado;
         }
 
-        [HttpPost]
-        public JsonResult GuardarRol(Roles rol)
+        // Método para editar un rol
+        public bool Editar(Roles obj, out string Mensaje)
         {
-            string mensaje = string.Empty;
             bool resultado = false;
-            if (rol.RolID == 0)
+            Mensaje = string.Empty;
+            try
             {
-                resultado = new CN_Roles().Registrar(rol, out mensaje);
+                using (SqlConnection oConexion = new SqlConnection(Conexion.conexion))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_EditarRol", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@RolID", obj.RolID);
+                    cmd.Parameters.AddWithValue("@NombreRol", obj.Rol);
+                    cmd.Parameters.AddWithValue("@Descripcion", obj.Descripcion);
+                    cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
+                    Mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                resultado = new CN_Roles().Editar(rol, out mensaje);
+                resultado = false;
+                Mensaje = ex.Message;
             }
-            return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
+            return resultado;
         }
 
-        [HttpPost]
-        public JsonResult EliminarRol(int id)
+        // Método para eliminar (borrado lógico) un rol
+        public bool Eliminar(int id, out string Mensaje)
         {
-            string mensaje = string.Empty;
-            bool resultado = new CN_Roles().Eliminar(id, out mensaje);
-            return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult EliminarPermiso(int id)
-        {
-            string mensaje = string.Empty;
-            bool resultado = new CN_Roles().Eliminar(id, out mensaje);
-            return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
+            bool resultado = false;
+            Mensaje = string.Empty;
+            try
+            {
+                using (SqlConnection oConexion = new SqlConnection(Conexion.conexion))
+                {
+                    SqlCommand cmd = new SqlCommand("sp_EliminarRol", oConexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@RolID", id);
+                    cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
+                    Mensaje = cmd.Parameters["@Mensaje"].Value.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                resultado = false;
+                Mensaje = ex.Message;
+            }
+            return resultado;
         }
     }
 }

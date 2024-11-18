@@ -29,7 +29,7 @@ namespace CapaNegocio
                 {
                     string asunto = "Bienvenido al Sistema";
                     string mensajeCorreo = $"Su nueva contraseña es: {clave}";
-                    CN_Recursos.EnviarCorreo(obj.Persona.Correo.DireccionCorreo, asunto, mensajeCorreo);
+                    CN_Recursos.EnviarCorreo(obj.Persona.Correo, asunto, mensajeCorreo);
                 }
             }
 

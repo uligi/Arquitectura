@@ -14,7 +14,7 @@ namespace CapaNegocio
             return objCapaDato.Listar();
         }
 
-        public bool Registrar(Roles obj, out string Mensaje)
+        public int Registrar(Roles obj, out string Mensaje)
         {
             return objCapaDato.Registrar(obj, out Mensaje);
         }

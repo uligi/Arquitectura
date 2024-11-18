@@ -59,7 +59,7 @@
             </main>
 
         </div>
-        
+
 
     </div>
     <script src="~/Scripts/bootstrap.bundle.js"></script>
@@ -68,46 +68,81 @@
 
 
         <script>
-            $(document).ready(function () {
-                // Botón para iniciar el tutorial
-                $('#startTutorial').click(function () {
-                    introJs().setOptions({
-                        steps: [
-                            {
-                                intro: "Bienvenido al tutorial de 'Inicio de Sesión'. Aquí te mostramos cómo iniciar sesión en el sistema."
-                            },
-                            {
-                                element: '#inputEmail',
-                                intro: "Ingresa tu correo electrónico aquí."
-                            },
-                            {
-                                element: '#inputPassword',
-                                intro: "Ingresa tu contraseña aquí."
-                            },
-                            {
-                                element: '#loginForm button[type="submit"]',
-                                intro: "Haz clic en este botón para iniciar sesión después de ingresar tus credenciales."
-                            },
-                            {
-                                element: '.alert-danger',
-                                intro: "Si tus credenciales son incorrectas, verás un mensaje de error aquí."
-                            },
-                            {
-                                intro: "Esto concluye el tutorial de 'Inicio de Sesión'. ¡Gracias por tu atención!"
-                            }
-                        ],
-                        showProgress: true,
-                        exitOnOverlayClick: false,
-                        exitOnEsc: true,
-                        showStepNumbers: true,
-                        nextLabel: 'Siguiente',
-                        prevLabel: 'Anterior',
-                        skipLabel: 'Salir',
-                        doneLabel: 'Finalizar'
-                    }).start();
-                });
+    $(document).ready(function () {
+        // Registrar evento para el envío del formulario
+        $('#loginForm').on('submit', function (e) {
+            // Evitar el envío real del formulario para poder capturar los datos
+            e.preventDefault();
+
+            // Obtener los valores del formulario
+            var correo = $('#inputEmail').val();
+            var clave = $('#inputPassword').val();
+
+            // Imprimir los valores en la consola
+            console.log('Correo:', correo);
+            console.log('Contraseña:', clave);
+
+            // Enviar el formulario de manera manual usando AJAX (opcional)
+            $.ajax({
+                url: $(this).attr('action'),
+                type: $(this).attr('method'),
+                data: $(this).serialize(),
+                success: function (response) {
+                    console.log('Respuesta del servidor:', response);
+                    // Redirigir o manejar la respuesta del servidor si es necesario
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error al enviar el formulario:', error);
+                    console.error('Detalles:', xhr.responseText);
+                }
             });
+        });
+
+        // Mostrar errores si existen
+        if ("@ViewBag.Error" !== '') {
+            console.error('Error del servidor:', "@ViewBag.Error");
+        }
+
+        // Botón para iniciar el tutorial
+        $('#startTutorial').click(function () {
+            introJs().setOptions({
+                steps: [
+                    {
+                        intro: "Bienvenido al tutorial de 'Inicio de Sesión'. Aquí te mostramos cómo iniciar sesión en el sistema."
+                    },
+                    {
+                        element: '#inputEmail',
+                        intro: "Ingresa tu correo electrónico aquí."
+                    },
+                    {
+                        element: '#inputPassword',
+                        intro: "Ingresa tu contraseña aquí."
+                    },
+                    {
+                        element: '#loginForm button[type="submit"]',
+                        intro: "Haz clic en este botón para iniciar sesión después de ingresar tus credenciales."
+                    },
+                    {
+                        element: '.alert-danger',
+                        intro: "Si tus credenciales son incorrectas, verás un mensaje de error aquí."
+                    },
+                    {
+                        intro: "Esto concluye el tutorial de 'Inicio de Sesión'. ¡Gracias por tu atención!"
+                    }
+                ],
+                showProgress: true,
+                exitOnOverlayClick: false,
+                exitOnEsc: true,
+                showStepNumbers: true,
+                nextLabel: 'Siguiente',
+                prevLabel: 'Anterior',
+                skipLabel: 'Salir',
+                doneLabel: 'Finalizar'
+            }).start();
+        });
+    });
         </script>
+
     }
 </body>
 </html>
