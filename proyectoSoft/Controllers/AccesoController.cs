@@ -34,7 +34,7 @@ namespace Administradores.Controllers
 
           
             Usuarios oUsuario = new CN_Usuario().Listar()
-                .Where(u => u.Persona.Correo.DireccionCorreo == correo && u.Contrasena == hashedClave).FirstOrDefault();
+                .Where(u => u.Persona.Correo == correo && u.Contrasena == hashedClave).FirstOrDefault();
 
             if (oUsuario == null)
             {
@@ -48,7 +48,7 @@ namespace Administradores.Controllers
                     TempData["UsuarioID"] = oUsuario.UsuarioID;
                     return RedirectToAction("CambiarClave");
                 }
-                FormsAuthentication.SetAuthCookie(oUsuario.Persona.Correo.DireccionCorreo, false);
+                FormsAuthentication.SetAuthCookie(oUsuario.Persona.Correo, false);
                 Session["NombreUsuario"] = oUsuario.Persona.Nombre;
                 Session["Rol"] = oUsuario.Rol.Rol;
                 Session["UsuarioID"] = oUsuario.UsuarioID;

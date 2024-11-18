@@ -86,6 +86,7 @@ CREATE TABLE Persona (
     Cedula INT PRIMARY KEY,
     Nombre NVARCHAR(255) NOT NULL,
     Apellido NVARCHAR(255) NOT NULL,
+	Correo NVARCHAR(255) NOT NULL,
     Activo BIT NOT NULL DEFAULT 1  -- Borrado lógico
 );
 GO
@@ -103,7 +104,7 @@ GO
 CREATE TABLE Usuarios (
     UsuarioID INT IDENTITY(1,1) PRIMARY KEY,
     Contrasena VARCHAR(255) NOT NULL,
-    RestablecerContraseña BIT NOT NULL,
+    RestablecerContrasena BIT NOT NULL,
     Activo BIT NOT NULL DEFAULT 1,  -- Borrado lógico
     FechaCreacion DATE DEFAULT GETDATE(),
     Cedula INT NOT NULL,

@@ -8,6 +8,7 @@ namespace CapaDatos
 {
     public class CD_Usuario
     {
+        // Método para listar usuarios
         public List<Usuarios> Listar()
         {
             List<Usuarios> lista = new List<Usuarios>();
@@ -32,17 +33,15 @@ namespace CapaDatos
                                 FechaCreacion = Convert.ToDateTime(dr["FechaCreacion"]),
                                 Rol = new Roles
                                 {
-                                    Rol = dr["Rol"].ToString()
+                                    RolID = Convert.ToInt32(dr["RolID"]),
+                                    Rol = dr["NombreRol"].ToString()
                                 },
                                 Persona = new Persona
                                 {
+                                    Cedula = Convert.ToInt32(dr["Cedula"]),
                                     Nombre = dr["Nombre"].ToString(),
-                                    Apellido1 = dr["Apellido1"].ToString(),
-                                    Apellido2 = dr["Apellido2"].ToString(),
-                                    Correo = new Correo
-                                    {
-                                        DireccionCorreo = dr["Correo"].ToString()
-                                    }
+                                    Apellido1 = dr["Apellido"].ToString(), // Ajuste si es un solo campo de apellido
+                                    Correo = dr["Correo"].ToString()
                                 }
                             });
                         }
@@ -56,7 +55,7 @@ namespace CapaDatos
             return lista;
         }
 
-
+        // Método para registrar un usuario
         public int Registrar(Usuarios obj, out string Mensaje)
         {
             int resultado = 0;
@@ -67,13 +66,9 @@ namespace CapaDatos
                 {
                     SqlCommand cmd = new SqlCommand("sp_RegistrarUsuario", oConexion);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@Cedula", obj.Cedula);
-                    cmd.Parameters.AddWithValue("@Nombre", obj.Persona.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido1", obj.Persona.Apellido1);
-                    cmd.Parameters.AddWithValue("@Apellido2", obj.Persona.Apellido2);
-                    cmd.Parameters.AddWithValue("@Correo", obj.Persona.Correo.DireccionCorreo);
-                    cmd.Parameters.AddWithValue("@TipoCorreoID", obj.Persona.Correo.TipoCorreoID);
                     cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
+                    cmd.Parameters.AddWithValue("@RestablecerContraseña", obj.RestablecerContrasena);
+                    cmd.Parameters.AddWithValue("@Cedula", obj.Cedula);
                     cmd.Parameters.AddWithValue("@RolID", obj.RolID);
                     cmd.Parameters.Add("@Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
@@ -91,8 +86,7 @@ namespace CapaDatos
             return resultado;
         }
 
-
-
+        // Método para editar un usuario
         public bool Editar(Usuarios obj, out string Mensaje)
         {
             bool resultado = false;
@@ -102,17 +96,14 @@ namespace CapaDatos
                 using (SqlConnection oConexion = new SqlConnection(Conexion.conexion))
                 {
                     SqlCommand cmd = new SqlCommand("sp_EditarUsuario", oConexion);
-                    cmd.Parameters.AddWithValue("@UsuarioID", obj.UsuarioID);
-                    cmd.Parameters.AddWithValue("@Cedula", obj.Cedula);
-                    cmd.Parameters.AddWithValue("@Nombre", obj.Persona.Nombre);
-                    cmd.Parameters.AddWithValue("@Apellido1", obj.Persona.Apellido1);
-                    cmd.Parameters.AddWithValue("@Apellido2", obj.Persona.Apellido2);
-                    cmd.Parameters.AddWithValue("@Correo", obj.Persona.Correo.DireccionCorreo);
-                    cmd.Parameters.AddWithValue("@TipoCorreoID", obj.Persona.Correo.TipoCorreoID);
-                    cmd.Parameters.AddWithValue("@RolID", obj.RolID);
-                    cmd.Parameters.Add("@Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@UsuarioID", obj.UsuarioID);
+                    cmd.Parameters.AddWithValue("@Contrasena", obj.Contrasena);
+                    cmd.Parameters.AddWithValue("@RestablecerContraseña", obj.RestablecerContrasena);
+                    cmd.Parameters.AddWithValue("@Cedula", obj.Cedula);
+                    cmd.Parameters.AddWithValue("@RolID", obj.RolID);
+                    cmd.Parameters.Add("@Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("@Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
                     oConexion.Open();
                     cmd.ExecuteNonQuery();
                     resultado = Convert.ToBoolean(cmd.Parameters["@Resultado"].Value);
@@ -127,8 +118,7 @@ namespace CapaDatos
             return resultado;
         }
 
-
-
+        // Método para eliminar (borrado lógico) un usuario
         public bool Eliminar(int id, out string Mensaje)
         {
             bool resultado = false;
@@ -155,34 +145,6 @@ namespace CapaDatos
             }
             return resultado;
         }
-
-        public bool DesactivarUsuario(int id, out string Mensaje)
-        {
-            bool resultado = false;
-            Mensaje = string.Empty;
-            try
-            {
-                using (SqlConnection oConexion = new SqlConnection(Conexion.conexion))
-                {
-                    SqlCommand cmd = new SqlCommand("sp_DesactivarUsuario", oConexion);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@UsuarioID", id);
-                    cmd.Parameters.Add("Resultado", SqlDbType.Bit).Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 500).Direction = ParameterDirection.Output;
-                    oConexion.Open();
-                    cmd.ExecuteNonQuery();
-                    resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
-                    Mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                resultado = false;
-                Mensaje = ex.Message;
-            }
-            return resultado;
-        }
-
         public bool CambiarClave(int UsuarioID, string nuevaClave, out string Mensaje)
         {
             bool resultado = false;

@@ -71,7 +71,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CN_Persona.cs" />
     <Compile Include="CN_Recursos.cs" />
     <Compile Include="CN_Roles.cs" />
     <Compile Include="CN_Usuarios.cs" />

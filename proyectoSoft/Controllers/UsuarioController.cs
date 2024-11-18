@@ -9,16 +9,19 @@ namespace proyectoSoft.Controllers
     [Authorize]
     public class UsuarioController : Controller
     {
-        // GET: Usuario
+        private CN_Usuario objUsuarioNegocio = new CN_Usuario();
+
+        // Acción para mostrar la vista de usuarios
         public ActionResult Usuarios()
         {
             return View();
         }
 
+        // Método para listar usuarios (GET)
         [HttpGet]
         public JsonResult ListarUsuarios()
         {
-            List<Usuarios> lista = new CN_Usuario().Listar();
+            List<Usuarios> lista = objUsuarioNegocio.Listar();
             var result = lista.Select(u => new
             {
                 UsuarioID = u.UsuarioID,
@@ -27,16 +30,14 @@ namespace proyectoSoft.Controllers
                 Apellido1 = u.Persona.Apellido1,
                 Apellido2 = u.Persona.Apellido2,
                 Rol = u.Rol.Rol,
-                Correo = u.Persona.Correo.DireccionCorreo,
+                Correo = u.Persona.Correo,
                 Activo = u.Activo,
                 FechaCreacion = u.FechaCreacion.ToString("yyyy-MM-dd")
             }).ToList();
             return Json(new { data = result }, JsonRequestBehavior.AllowGet);
         }
 
-
-
-
+        // Método para guardar un usuario (POST)
         [HttpPost]
         public JsonResult GuardarUsuario(Usuarios usuario)
         {
@@ -44,54 +45,52 @@ namespace proyectoSoft.Controllers
             object resultado;
             if (usuario.UsuarioID == 0)
             {
-                resultado = new CN_Usuario().Registrar(usuario, out mensaje);
+                // Nuevo registro
+                resultado = objUsuarioNegocio.Registrar(usuario, out mensaje);
             }
             else
             {
-                resultado = new CN_Usuario().Editar(usuario, out mensaje);
+                // Edición de usuario existente
+                resultado = objUsuarioNegocio.Editar(usuario, out mensaje);
             }
-            return Json(new { resultado = resultado, mensaje =mensaje }, JsonRequestBehavior.AllowGet);
+            return Json(new { resultado = resultado, mensaje = mensaje }, JsonRequestBehavior.AllowGet);
         }
 
-
+        // Método para eliminar un usuario (POST)
         [HttpPost]
         public JsonResult EliminarUsuario(int usuarioID)
         {
             string mensaje = string.Empty;
-            bool resultado = new CN_Usuario().Eliminar(usuarioID, out mensaje);
+            bool resultado = objUsuarioNegocio.Eliminar(usuarioID, out mensaje);
             return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
         }
 
+        // Método para desactivar un usuario (POST)
         [HttpPost]
         public JsonResult DesactivarUsuario(int usuarioID)
         {
             string mensaje = string.Empty;
-            bool resultado = new CN_Usuario().DesactivarUsuario(usuarioID, out mensaje);
+            bool resultado = objUsuarioNegocio.DesactivarUsuario(usuarioID, out mensaje);
             return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
         }
 
+        // Método para restablecer la contraseña de un usuario (POST)
         [HttpPost]
-
-        public ActionResult RestablcerContrasena(int UsuarioID)
+        public ActionResult RestablecerContrasena(int UsuarioID)
         {
-
-            Usuarios oUsuario = new CN_Usuario().Listar()
-                .Where(u => u.UsuarioID == UsuarioID ).FirstOrDefault();
+            Usuarios oUsuario = objUsuarioNegocio.Listar().FirstOrDefault(u => u.UsuarioID == UsuarioID);
 
             if (oUsuario == null)
             {
-
-                ViewBag.Error = "No se encontrò el usuario";
-
+                ViewBag.Error = "No se encontró el usuario";
                 return View();
             }
 
-            string mensaje = string.Empty ;
-            bool respuesta = new CN_Usuario().RestablecerContrasena(oUsuario.UsuarioID, oUsuario.Persona.Correo.DireccionCorreo, out mensaje);
+            string mensaje = string.Empty;
+            bool respuesta = objUsuarioNegocio.RestablecerContrasena(oUsuario.UsuarioID, oUsuario.Persona.Correo, out mensaje);
 
             if (respuesta)
             {
-
                 ViewBag.Error = null;
                 return RedirectToAction("Index", "Acceso");
             }
@@ -99,15 +98,10 @@ namespace proyectoSoft.Controllers
             {
                 ViewBag.Error = mensaje;
                 return View();
-
             }
         }
 
-        public ActionResult Correos()
-        {
-            return View();
-        }
-
+        // Método para listar roles (GET)
         public JsonResult ListarRoles()
         {
             List<Roles> lista = new CN_Roles().Listar();
@@ -119,48 +113,6 @@ namespace proyectoSoft.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public JsonResult ListarCorreos()
-        {
-            List<Correo> oLista = new CN_Correo().Listar();
-            var result = oLista.Select(c => new
-            {
-                c.CorreoID,
-                c.DireccionCorreo,
-                TipoCorreo = c.TipoCorreo.Descripcion
-            }).ToList();
-            return Json(new { data = result }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpGet]
-        public JsonResult ObtenerTiposCorreo()
-        {
-            List<TipoCorreo> tiposCorreo = new CN_TipoCorreo().Listar();
-            return Json(tiposCorreo, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult GuardarCorreo(Correo correo)
-        {
-            string mensaje = string.Empty;
-            int resultado = 0;
-            if (correo.CorreoID == 0)
-            {
-                resultado = new CN_Correo().RegistrarCorreo(correo, out mensaje);
-            }
-            else
-            {
-                resultado = new CN_Correo().ActualizarCorreo(correo, out mensaje) ? 1 : 0;
-            }
-            return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
-        }
-
-        [HttpPost]
-        public JsonResult EliminarCorreo(int correoID)
-        {
-            string mensaje = string.Empty;
-            bool resultado = new CN_Correo().EliminarCorreo(correoID, out mensaje);
-            return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
-        }
+      
     }
 }

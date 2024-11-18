@@ -11,10 +11,7 @@ namespace CapaEntidad
 
         public int RolID { get; set; }
         public string Rol { get; set; }
-        public int PermisoID { get; set; }
-        public Permisos Permisos { get; set; }
-
-        public String TipoRolDescripcion { get; set; }
+        public string Descripcion { get; set; }
 
 
 

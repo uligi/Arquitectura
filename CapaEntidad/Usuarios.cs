@@ -16,7 +16,6 @@ namespace CapaEntidad
         public DateTime FechaCreacion { get; set; }
         public int Cedula { get; set; }
         public int RolID { get; set; }
-        public Correo Correo { get; set; }
         public Persona Persona { get; set; }
         public Roles Rol { get; set; }
 

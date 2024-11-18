@@ -53,3 +53,7 @@ C:\Users\ul13m\Documents\GitHub\Soft3\CapaNegocio\bin\Debug\System.Web.Razor.xml
 C:\Users\ul13m\Documents\GitHub\Soft3\CapaNegocio\bin\Debug\System.Web.WebPages.xml
 C:\Users\ul13m\Documents\GitHub\Soft3\CapaNegocio\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\ul13m\Documents\GitHub\Soft3\CapaNegocio\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaNegocio\obj\Debug\CapaNegocio.csproj.AssemblyReference.cache
+C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaNegocio\obj\Debug\CapaNegocio.csproj.CoreCompileInputs.cache
+C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaNegocio\obj\Debug\CapaNegocio.dll
+C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaNegocio\obj\Debug\CapaNegocio.pdb

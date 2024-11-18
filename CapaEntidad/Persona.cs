@@ -12,10 +12,7 @@ namespace CapaEntidad
         public string Nombre { get; set; }
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
-        public int CorreoID { get; set; }
-        public Correo Correo { get; set; }
-
-        public List<Telefono> Telefonos { get; set; }
-        public List<Direccion> Direcciones { get; set; }
+        public string Correo { get; set; }
     }
+
 }

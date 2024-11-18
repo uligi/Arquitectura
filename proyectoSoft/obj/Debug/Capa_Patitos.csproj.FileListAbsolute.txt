@@ -1,0 +1,4 @@
+C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Patitos.csproj.AssemblyReference.cache
+C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Patitos.csproj.CoreCompileInputs.cache
+C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\proyectoSoft.dll
+C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\proyectoSoft.pdb
