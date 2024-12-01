@@ -65,10 +65,10 @@ namespace proyectoSoft.Controllers
 
         // Método para eliminar un rol (POST)
         [HttpPost]
-        public JsonResult EliminarRol(int RolID)
+        public JsonResult EliminarRol(int id)
         {
             string mensaje = string.Empty;
-            bool resultado = objRolesNegocio.Eliminar(RolID, out mensaje);
+            bool resultado = new CN_Roles().Eliminar(id, out mensaje);
             return Json(new { resultado, mensaje }, JsonRequestBehavior.AllowGet);
         }
     }

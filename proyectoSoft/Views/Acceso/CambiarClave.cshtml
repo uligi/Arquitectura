@@ -1,17 +1,72 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Cambiar Clave</title>
+    <title>Cambiar Contraseña</title>
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #000000; /* Fondo negro */
+            color: #FFD700; /* Texto dorado */
+        }
+
+        .card {
+            background-color: #FFFFFF; /* Fondo blanco */
+            border: 2px solid #FFD700; /* Borde dorado */
+            border-radius: 10px; /* Bordes redondeados */
+        }
+
+        .card-header {
+            background-color: #FFA500; /* Naranja */
+            color: #000000; /* Texto negro */
+            font-size: 1.25rem; /* Tamaño del texto */
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #FFD700; /* Botón dorado */
+            color: #000000; /* Texto negro */
+            border: none;
+            font-weight: bold;
+        }
+
+            .btn-primary:hover {
+                background-color: #FFA500; /* Botón naranja al pasar el ratón */
+                color: #FFFFFF; /* Texto blanco */
+            }
+
+        .form-floating label {
+            color: #000000; /* Etiquetas negras */
+        }
+
+        .form-control {
+            border: 1px solid #FFD700; /* Bordes dorados */
+        }
+
+            .form-control:focus {
+                border-color: #FFA500; /* Bordes naranja en foco */
+                box-shadow: 0 0 5px #FFA500; /* Sombra naranja */
+            }
+
+        a {
+            color: #007BFF; /* Enlaces azules */
+        }
+
+            a:hover {
+                color: #FFA500; /* Enlaces naranja al pasar el ratón */
+            }
+
+        .alert-danger {
+            background-color: #FF6347; /* Fondo rojo claro para errores */
+            color: #FFFFFF; /* Texto blanco */
+        }
+    </style>
 </head>
-<body class="bg-primary">
+<body>
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
@@ -19,7 +74,7 @@
                     <div class="row justify-content-center">
                         <div class="col-lg-7">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Cambiar contraseña</h3></div>
+                                <div class="card-header">Cambiar Contraseña</div>
                                 <div class="card-body">
                                     <form action="@Url.Action("CambiarClave", "Acceso")" method="post">
                                         <input class="form-control" type="hidden" value="@TempData["UsuarioID"]" name="UsuarioID" />
@@ -27,7 +82,7 @@
                                         <div class="row mb-3">
                                             <div class="col-md-12">
                                                 <div class="form-floating mb-3 mb-md-0">
-                                                    <input class="form-control " id="inputPassword" type="password" name="claveActual" value="@ViewData["vClave"]" />
+                                                    <input class="form-control" id="inputPassword" type="password" name="claveActual" value="@ViewData["vClave"]" />
                                                     <label for="inputPassword">Contraseña Actual</label>
                                                 </div>
                                             </div>
@@ -36,7 +91,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control validar-password" id="inputPassword1" type="password" name="nuevaClave" />
-                                                    <label for="inputPassword">Contraseña Nueva</label>
+                                                    <label for="inputPassword">Nueva Contraseña</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -44,32 +99,32 @@
                                             <div class="col-md-12">
                                                 <div class="form-floating mb-3 mb-md-0">
                                                     <input class="form-control validar-password" id="inputPassword2" type="password" name="confirmarClave" />
-                                                    <label for="inputPassword">Confrimar Contraseña</label>
+                                                    <label for="inputPassword">Confirmar Contraseña</label>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mt-4 mb-0">
-                                            <div class="d-grid"><button class="btn btn-primary btn-block" type="submit">Cambiar contraseña</button></div>
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-block" type="submit">Cambiar Contraseña</button>
+                                            </div>
                                         </div>
                                         <div>
-                                            @{
-                                                if (ViewBag.Error != null)
-                                                {
-                                                    <div class="form-floating mb-3">
-                                                        <div class="alert alert-danger" role="alert">
-                                                            @ViewBag.Error
-                                                        </div>
+                                            @if (ViewBag.Error != null)
+                                            {
+                                                <div class="form-floating mb-3">
+                                                    <div class="alert alert-danger" role="alert">
+                                                        @ViewBag.Error
                                                     </div>
-                                                }
+                                                </div>
                                             }
-
                                         </div>
-
                                     </form>
                                 </div>
                                 <div class="card-footer text-center py-3">
-                                    <div class="small"><a href="@Url.Action("Index","Acceso")">Volver</a></div>
+                                    <div class="small">
+                                        <a href="@Url.Action("Index","Acceso")">Volver</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -77,13 +132,7 @@
                 </div>
             </main>
         </div>
-        <div id="layoutAuthentication_footer">
-            <footer class="py-4 bg-light mt-auto">
-  
-            </footer>
-        </div>
     </div>
     <script src="~/Scripts/bootstrap.bundle.js"></script>
 </body>
-
 </html>

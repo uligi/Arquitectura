@@ -6,143 +6,136 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Inicio Sesion</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Inicio Sesión</title>
     <meta charset="utf-8" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/introjs.min.css" rel="stylesheet">
     <link href="~/Content/Site.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #000000; /* Fondo negro */
+            color: #FFD700; /* Texto dorado */
+        }
 
+        .card {
+            background-color: #FFFFFF; /* Fondo blanco */
+            border: 2px solid #FFD700; /* Borde dorado */
+            border-radius: 10px; /* Bordes redondeados */
+        }
+
+        .card-header {
+            background-color: #FFA500; /* Naranja */
+            color: #000000; /* Texto negro */
+            font-size: 1.25rem; /* Tamaño del texto */
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #FFD700; /* Botón dorado */
+            color: #000000; /* Texto negro */
+            border: none;
+            font-weight: bold;
+        }
+
+            .btn-primary:hover {
+                background-color: #FFA500; /* Botón naranja al pasar el ratón */
+                color: #FFFFFF; /* Texto blanco */
+            }
+
+        .form-floating label {
+            color: #000000; /* Etiquetas negras */
+        }
+
+        .form-control {
+            border: 1px solid #FFD700; /* Bordes dorados */
+        }
+
+            .form-control:focus {
+                border-color: #FFA500; /* Bordes naranja en foco */
+                box-shadow: 0 0 5px #FFA500; /* Sombra naranja */
+            }
+
+        a {
+            color: #007BFF; /* Enlaces azules */
+        }
+
+            a:hover {
+                color: #FFA500; /* Enlaces naranja al pasar el ratón */
+            }
+
+        .alert-danger {
+            background-color: #FF6347; /* Fondo rojo claro para errores */
+            color: #FFFFFF; /* Texto blanco */
+        }
+    </style>
 </head>
-<body class="bg-primary">
+<body>
     <div id="layoutAuthentication">
         <div id="layoutAuthentication_content">
             <main>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-5">
-                            <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar sesión</h3></div>
+                            <div class="card shadow-lg mt-5">
+                                <div class="card-header">Inicio de Sesión</div>
                                 <div class="card-body">
-                                    <form id="loginForm" action="@Url.Action("Index","Acceso")" method="post">
+                                    <form id="loginForm" action="@Url.Action("Index", "Acceso")" method="post">
                                         <div class="form-floating mb-3">
-                                            <input class="form-control" id="inputEmail" name="correo" type="email" placeholder="Dunamis@correo.com" />
-                                            <label for="inputEmail">Correo</label>
+                                            <input class="form-control" id="inputEmail" name="correo" type="email" placeholder="correo@ejemplo.com" />
+                                            <label for="inputEmail">Correo Electrónico</label>
                                         </div>
                                         <div class="form-floating mb-3">
                                             <input class="form-control" id="inputPassword" name="clave" type="password" placeholder="Contraseña" />
                                             <label for="inputPassword">Contraseña</label>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
                                         </div>
                                         <div>
-                                            @{
-                                                if (ViewBag.Error != null)
-                                                {
-                                                    <div class="form-floating mb-3">
-                                                        <div class="alert alert-danger" role="alert">
-                                                            @ViewBag.Error
-                                                        </div>
+                                            @if (ViewBag.Error != null)
+                                            {
+                                                <div class="form-floating mb-3">
+                                                    <div class="alert alert-danger" role="alert">
+                                                        @ViewBag.Error
                                                     </div>
-                                                }
+                                                </div>
                                             }
-
                                         </div>
-
                                     </form>
                                 </div>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </main>
-
         </div>
-
-
     </div>
-    <script src="~/Scripts/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/4.0.0/intro.min.js"></script>
-    @section Scripts {
-
-
-        <script>
-    $(document).ready(function () {
-        // Registrar evento para el envío del formulario
-        $('#loginForm').on('submit', function (e) {
-            // Evitar el envío real del formulario para poder capturar los datos
-            e.preventDefault();
-
-            // Obtener los valores del formulario
-            var correo = $('#inputEmail').val();
-            var clave = $('#inputPassword').val();
-
-            // Imprimir los valores en la consola
-            console.log('Correo:', correo);
-            console.log('Contraseña:', clave);
-
-            // Enviar el formulario de manera manual usando AJAX (opcional)
-            $.ajax({
-                url: $(this).attr('action'),
-                type: $(this).attr('method'),
-                data: $(this).serialize(),
-                success: function (response) {
-                    console.log('Respuesta del servidor:', response);
-                    // Redirigir o manejar la respuesta del servidor si es necesario
-                },
-                error: function (xhr, status, error) {
-                    console.error('Error al enviar el formulario:', error);
-                    console.error('Detalles:', xhr.responseText);
-                }
-            });
-        });
-
-        // Mostrar errores si existen
-        if ("@ViewBag.Error" !== '') {
-            console.error('Error del servidor:', "@ViewBag.Error");
-        }
-
-        // Botón para iniciar el tutorial
-        $('#startTutorial').click(function () {
-            introJs().setOptions({
-                steps: [
-                    {
-                        intro: "Bienvenido al tutorial de 'Inicio de Sesión'. Aquí te mostramos cómo iniciar sesión en el sistema."
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('submit', function (e) {
+                e.preventDefault();
+                var correo = $('#inputEmail').val();
+                var clave = $('#inputPassword').val();
+                console.log('Correo:', correo);
+                console.log('Contraseña:', clave);
+                $.ajax({
+                    url: $(this).attr('action'),
+                    type: $(this).attr('method'),
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        console.log('Respuesta del servidor:', response);
                     },
-                    {
-                        element: '#inputEmail',
-                        intro: "Ingresa tu correo electrónico aquí."
-                    },
-                    {
-                        element: '#inputPassword',
-                        intro: "Ingresa tu contraseña aquí."
-                    },
-                    {
-                        element: '#loginForm button[type="submit"]',
-                        intro: "Haz clic en este botón para iniciar sesión después de ingresar tus credenciales."
-                    },
-                    {
-                        element: '.alert-danger',
-                        intro: "Si tus credenciales son incorrectas, verás un mensaje de error aquí."
-                    },
-                    {
-                        intro: "Esto concluye el tutorial de 'Inicio de Sesión'. ¡Gracias por tu atención!"
+                    error: function (xhr, status, error) {
+                        console.error('Error al enviar el formulario:', error);
+                        console.error('Detalles:', xhr.responseText);
                     }
-                ],
-                showProgress: true,
-                exitOnOverlayClick: false,
-                exitOnEsc: true,
-                showStepNumbers: true,
-                nextLabel: 'Siguiente',
-                prevLabel: 'Anterior',
-                skipLabel: 'Salir',
-                doneLabel: 'Finalizar'
-            }).start();
-        });
-    });
-        </script>
+                });
+            });
 
-    }
+            if ("@ViewBag.Error" !== '') {
+                console.error('Error del servidor:', "@ViewBag.Error");
+            }
+        });
+    </script>
 </body>
 </html>
