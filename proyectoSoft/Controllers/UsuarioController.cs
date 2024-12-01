@@ -26,9 +26,8 @@ namespace proyectoSoft.Controllers
             {
                 UsuarioID = u.UsuarioID,
                 Cedula = u.Cedula,
+                Apellido = u.Persona.Apellido,
                 Nombre = u.Persona.Nombre,
-                Apellido1 = u.Persona.Apellido1,
-                Apellido2 = u.Persona.Apellido2,
                 Rol = u.Rol.Rol,
                 Correo = u.Persona.Correo,
                 Activo = u.Activo,

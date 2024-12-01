@@ -26,8 +26,7 @@
                 <tr>
                     <th>Cédula</th>
                     <th>Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
+                    <th>Apellido</th>
                     <th>Rol</th>
                     <th>Correo</th>
                     <th>Activo</th>
@@ -55,12 +54,8 @@
                     <input type="text" class="form-control" id="nombre">
                 </div>
                 <div class="mb-3">
-                    <label for="apellido1" class="form-label">Primer Apellido</label>
-                    <input type="text" class="form-control" id="apellido1">
-                </div>
-                <div class="mb-3">
-                    <label for="apellido2" class="form-label">Segundo Apellido</label>
-                    <input type="text" class="form-control" id="apellido2">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido">
                 </div>
                 <div class="mb-3">
                     <label for="cedula" class="form-label">Cédula</label>
@@ -70,13 +65,7 @@
                     <label for="correo" class="form-label">Correo</label>
                     <input type="email" class="form-control" id="correo">
                 </div>
-                <div class="mb-3">
-                    <label for="tipoCorreoID" class="form-label">Tipo de Correo</label>
-                    <select class="form-select" id="tipoCorreoID">
-                        <option selected value="0">Seleccione un Tipo de Correo</option>
-                        <!-- Tipos de correo dinámicamente poblados -->
-                    </select>
-                </div>
+
                 <div class="mb-3">
                     <label for="rolID" class="form-label">Rol</label>
                     <select class="form-select" id="rolID">
@@ -96,118 +85,222 @@
     </div>
 </div>
 
-<script>
-    var tabladata;
-    $(document).ready(function () {
-        tabladata = $("#tabla").DataTable({
-            responsive: true,
-            "ajax": {
-                url: '@Url.Action("ListarUsuarios", "Usuario")',
-                type: "GET",
-                datatype: "json"
-            },
-            "columns": [
-                { "data": "Cedula" },
-                { "data": "Nombre" },
-                { "data": "Apellido1" },
-                { "data": "Apellido2" },
-                { "data": "Rol" },
-                { "data": "Correo" },
-                {
-                    "data": "Activo",
-                    "render": function (data) {
-                        return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
-                    }
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!-- Incluye la librería de SweetAlert si no lo has hecho -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        var tabladata;
+        $(document).ready(function () {
+            tabladata = $("#tabla").DataTable({
+                responsive: true,
+                "ajax": {
+                    url: '@Url.Action("ListarUsuarios", "Usuario")',
+                    type: "GET",
+                    datatype: "json"
                 },
-                {
-                    "data": "FechaCreacion",
-                    "render": function (data) {
-                        return new Date(data).toISOString().split('T')[0];
-                    }
-                },
-                {
-                    "defaultContent": '<button class="btn btn-primary btn-editar">Editar</button> <button class="btn btn-danger btn-eliminar">Eliminar</button>',
-                    "orderable": false
-                }
-            ],
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
-            }
-        });
-
-        $('#tabla tbody').on('click', '.btn-editar', function () {
-            var data = tabladata.row($(this).parents('tr')).data();
-            abrirModal(data);
-        });
-
-        $('#tabla tbody').on('click', '.btn-eliminar', function () {
-            var data = tabladata.row($(this).parents('tr')).data();
-            if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) {
-                $.ajax({
-                    url: '@Url.Action("EliminarUsuario", "Usuario")',
-                    type: "POST",
-                    data: { usuarioID: data.UsuarioID },
-                    success: function (response) {
-                        if (response.resultado) {
-                            tabladata.ajax.reload();
-                            alert("Usuario eliminado exitosamente");
-                        } else {
-                            alert("Error: " + response.mensaje);
+                "columns": [
+                    { "data": "Cedula" },
+                    { "data": "Nombre" },
+                    { "data": "Apellido" },
+                    { "data": "Rol" },
+                    { "data": "Correo" },
+                    {
+                        "data": "Activo",
+                        "render": function (data) {
+                            return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
                         }
+                    },
+                    {
+                        "data": "FechaCreacion",
+                        "render": function (data) {
+                            return data;
+                        }
+                    },
+                    {
+                        "defaultContent": '<div class="btn-group">' +
+                                          '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
+                                          '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
+                                          '<button type="button" class="btn btn-info btn-small ms-2 btn-restablecer"><i class="fas fa-key"></i></button>' +
+                                          '</div>',
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "150px"
+                    }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Spanish.json"
+                }
+            });
+
+            $('#tabla tbody').on('click', '.btn-editar', function () {
+                var data = tabladata.row($(this).parents('tr')).data();
+                abrirModal(data);
+            });
+
+            $('#tabla tbody').on('click', '.btn-eliminar', function () {
+                var data = tabladata.row($(this).parents('tr')).data();
+                swal({
+                    title: "¿Estás seguro?",
+                    text: "¡No podrás recuperar este usuario!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: '@Url.Action("EliminarUsuario", "Usuario")',
+                            type: "POST",
+                            data: JSON.stringify({ usuarioID: data.UsuarioID }),
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                if (data.resultado) {
+                                    tabladata.ajax.reload();
+                                    swal("¡Eliminado!", "El usuario ha sido eliminado.", "success");
+                                } else {
+                                    swal("Error", data.mensaje, "error");
+                                }
+                            },
+                            error: function (error) {
+                                swal("Error", "Hubo un problema con la solicitud.", "error");
+                            }
+                        });
                     }
                 });
-            }
+            });
+
+            $('#tabla tbody').on('click', '.btn-restablecer', function () {
+                var data = tabladata.row($(this).parents('tr')).data();
+                swal({
+                    title: "¿Estás seguro?",
+                    text: "Se enviará un correo al usuario con una nueva contraseña.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willReset) => {
+                    if (willReset) {
+                        $.ajax({
+                            url: '@Url.Action("RestablecerContrasena", "Usuario")',
+                            type: "POST",
+                            data: JSON.stringify({ UsuarioID: data.UsuarioID }),
+                            dataType: "json",
+                            contentType: "application/json; charset=utf-8",
+                            success: function (data) {
+                                if (data.resultado) {
+                                    swal("¡Restablecido!", "Se ha enviado una nueva contraseña al usuario.", "success");
+                                } else {
+                                    swal("Error", data.mensaje, "error");
+                                }
+                            },
+                            error: function (error) {
+                                swal("Error", "Hubo un problema con la solicitud.", "error");
+                            }
+                        });
+                    }
+                });
+            });
         });
-    });
 
-    function abrirModal(data) {
-        $("#UsuarioID").val(data ? data.UsuarioID : 0);
-        $("#cedula").val(data ? data.Cedula : "");
-        $("#nombre").val(data ? data.Nombre : "");
-        $("#apellido1").val(data ? data.Apellido1 : "");
-        $("#apellido2").val(data ? data.Apellido2 : "");
-        $("#correo").val(data ? data.Correo : "");
-        $("#rolID").val(data ? data.RolID : 0);
-        $("#FormModal").modal("show");
-    }
-
-    function Guardar() {
-        var usuario = {
-            UsuarioID: parseInt($("#UsuarioID").val()),
-            Cedula: parseInt($("#cedula").val()),
-            Persona: {
-                Cedula: parseInt($("#cedula").val()),
-                Nombre: $("#nombre").val(),
-                Apellido1: $("#apellido1").val(),
-                Apellido2: $("#apellido2").val(),
-                Correo: {
-                    DireccionCorreo: $("#correo").val(),
-                    TipoCorreoID: parseInt($("#tipoCorreoID").val())
-                }
-            },
-            RolID: parseInt($("#rolID").val())
-        };
-
-        if (!usuario.Cedula || !usuario.Persona.Nombre || !usuario.Persona.Apellido1 || !usuario.Persona.Apellido2 || !usuario.Persona.Correo.DireccionCorreo || !usuario.RolID) {
-            $("#mensajeError").show();
-            return;
-        } else {
+        function abrirModal(data) {
+            // Reinicia el formulario y prepara para un nuevo usuario o para editar uno existente
+            $("#UsuarioID").val(0);
+            $("#cedula").val("");
+            $("#nombre").val("");
+            $("#apellido").val("");
+            $("#correo").val("");
+            $("#rolID").val(0);
             $("#mensajeError").hide();
+
+            // Cambia el título del modal y llena los campos si es edición
+            if (data) {
+                $("#UsuarioID").val(data.UsuarioID);
+                $("#cedula").val(data.Cedula);
+                $("#nombre").val(data.Nombre);
+                $("#apellido").val(data.Apellido);
+                $("#correo").val(data.Correo);
+                $("#rolID").val(data.RolID);
+                $("#exampleModalLabel").text("Editar Usuario");
+            } else {
+                $("#exampleModalLabel").text("Agregar Usuario");
+            }
+
+            $("#FormModal").modal("show");
+
+            fetchRoles();
         }
 
-        $.ajax({
-            url: '@Url.Action("GuardarUsuario", "Usuario")',
-            type: "POST",
-            data: JSON.stringify(usuario),
-            contentType: "application/json; charset=utf-8",
-            success: function (response) {
-                if (response.resultado != 0) {
-                    tabladata.ajax.reload();
-                    $("#FormModal").modal("hide");
-                } else {
-                    alert("Error: " + response.mensaje);
-                }
+        function Guardar() {
+            var usuarioID = parseInt($("#UsuarioID").val());
+            var usuario = {
+                UsuarioID: usuarioID,
+                Cedula: parseInt($("#cedula").val()),
+                Persona: {
+                    Cedula: parseInt($("#cedula").val()),
+                    Nombre: $("#nombre").val(),
+                    Apellido: $("#apellido").val(),
+                    Correo: $("#correo").val()
+                },
+                RolID: parseInt($("#rolID").val())
+            };
+
+            // Validación básica
+            if (!usuario.Cedula || !usuario.Persona.Nombre || !usuario.Persona.Apellido || !usuario.Persona.Correo || usuario.RolID === 0) {
+                $("#mensajeError").show();
+                return;
+            } else {
+                $("#mensajeError").hide();
             }
-        });
-    }
-</script>
+
+            // URL fija para guardar o actualizar
+            var url = '@Url.Action("GuardarUsuario", "Usuario")';
+
+            // Hacer la petición AJAX al servidor
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: JSON.stringify(usuario),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.resultado) {
+                        tabladata.ajax.reload();
+                        $("#FormModal").modal("hide");
+                    } else {
+                        swal("Error", response.mensaje, "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    swal("Error", "Hubo un problema con la solicitud.", "error");
+                }
+            });
+        }
+
+        function fetchRoles() {
+            $.ajax({
+                url: '@Url.Action("ListarRoles", "Usuario")', 
+                type: "GET",
+                success: function (data) {
+                    let rolSelect = $("#rolID");
+                    rolSelect.empty();
+                    rolSelect.append('<option selected value="0">Seleccione un Rol</option>');
+                    $.each(data, function (index, item) {
+                        rolSelect.append($('<option>', {
+                            value: item.RolID,
+                            text: item.Rol
+                        }));
+                    });
+
+                    // Establecer el rol seleccionado si estamos editando
+                    if ($("#UsuarioID").val() != 0) {
+                        $("#rolID").val($("#rolID").attr("data-selected"));
+                    }
+                },
+                error: function (error) {
+                    console.error("Error al obtener roles: ", error);
+                }
+            });
+        }
+    </script>
+}

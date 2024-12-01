@@ -72,10 +72,9 @@ GO
 
 
 -- Procedimiento para editar un Usuario
-CREATE PROCEDURE sp_EditarUsuario
+Create PROCEDURE sp_EditarUsuario
     @UsuarioID INT,
-    @Contrasena VARCHAR(255),
-    @RestablecerContraseña BIT,
+    
     @Cedula INT,
     @Nombre NVARCHAR(255),
     @Apellido NVARCHAR(255),
@@ -100,9 +99,8 @@ BEGIN
 
         -- Actualizar información del usuario
         UPDATE Usuarios
-        SET Contrasena = @Contrasena,
-            RestablecerContrasena = @RestablecerContraseña,
-            Cedula = @Cedula,
+        SET 
+           
             RolID = @RolID,
             Activo = 1
         WHERE UsuarioID = @UsuarioID;
@@ -180,6 +178,59 @@ BEGIN
         BEGIN
             SET @Resultado = 0;
             SET @Mensaje = 'No se encontró el usuario o el usuario no está activo.';
+        END
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        SET @Resultado = 0;
+        SET @Mensaje = ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+USE PatitosFinancieros_Suite
+GO
+
+-- Procedimiento para cambiar la clave de un usuario
+CREATE PROCEDURE sp_CambiarClave
+    @UsuarioID INT,
+    @NuevaClave NVARCHAR(255),
+    @Resultado BIT OUTPUT,
+    @Mensaje NVARCHAR(500) OUTPUT
+AS
+BEGIN
+    SET @Resultado = 0;
+    SET @Mensaje = '';
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        -- Verificar si el usuario existe y está activo
+        IF EXISTS (SELECT 1 FROM Usuarios WHERE UsuarioID = @UsuarioID AND Activo = 1)
+        BEGIN
+            -- Actualizar la contraseña del usuario
+            UPDATE Usuarios
+            SET Contrasena = @NuevaClave,
+                RestablecerContrasena = 0 -- Marcamos que no necesita restablecer
+            WHERE UsuarioID = @UsuarioID;
+
+            IF @@ROWCOUNT > 0
+            BEGIN
+                SET @Resultado = 1;
+                SET @Mensaje = 'Contraseña actualizada correctamente.';
+            END
+            ELSE
+            BEGIN
+                SET @Resultado = 0;
+                SET @Mensaje = 'No se pudo actualizar la contraseña.';
+            END
+        END
+        ELSE
+        BEGIN
+            SET @Resultado = 0;
+            SET @Mensaje = 'Usuario no encontrado o no está activo.';
         END
 
         COMMIT TRANSACTION;

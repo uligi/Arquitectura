@@ -6,6 +6,7 @@ using System.Web.Security;
 
 namespace Administradores.Controllers
 {
+
     public class AccesoController : Controller
     {
         // GET: Acceso

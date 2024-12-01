@@ -27,7 +27,7 @@ namespace CapaDatos
                             {
                                 RolID = Convert.ToInt32(dr["RolID"]),
                                 Rol = dr["NombreRol"].ToString(),
-                                Descripcion = dr["Descripcion"].ToString()
+                                Descripcion = dr["Descripcion"].ToString(),
                             });
                         }
                     }
@@ -35,12 +35,13 @@ namespace CapaDatos
             }
             catch (Exception ex)
             {
+                // Manejo de errores
                 lista = new List<Roles>();
             }
             return lista;
         }
 
-        // Método para registrar un nuevo rol
+        // Método para registrar un rol
         public int Registrar(Roles obj, out string Mensaje)
         {
             int resultado = 0;
@@ -99,7 +100,7 @@ namespace CapaDatos
             return resultado;
         }
 
-        // Método para eliminar (borrado lógico) un rol
+        // Método para eliminar un rol (borrado lógico)
         public bool Eliminar(int id, out string Mensaje)
         {
             bool resultado = false;

@@ -121,6 +121,7 @@
     <Content Include="Content\css\Factura.css" />
     <Compile Include="Controllers\AccesoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -556,12 +557,12 @@
     <Content Include="Views\Usuario\Usuarios.cshtml" />
     <Content Include="Views\Administrar\Roles.cshtml" />
     <Content Include="Views\Acceso\Index.cshtml" />
-    <Content Include="Views\Usuario\Correos.cshtml" />
     <Content Include="Views\Direccion\Direccion.cshtml" />
     <Content Include="Views\Acceso\CambiarClave.cshtml" />
     <Content Include="Views\Reportes\MontosPorTiposCargas.cshtml" />
     <Content Include="Views\Reportes\MontosPorConceptoDescuentos.cshtml" />
     <Content Include="Views\Reportes\MontosPorPeriodo.cshtml" />
+    <Content Include="Views\Roles\Roles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
