@@ -1,0 +1,312 @@
+﻿@{
+    ViewBag.Title = "Cuentas Contables";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Administrar</a></li>
+    <li class="breadcrumb-item active">Cuentas Contables</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i> Lista de Cuentas Contables
+    </div>
+    <div class="card-body">
+        <div class="row mb-2">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="abrirModal(null)">Agregar</button>
+            </div>
+        </div>
+
+        <table id="tablaCuentas" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Descripción</th>
+                    <th>Clase</th>
+                    <th>Grupo</th>
+                    <th>Rubro</th> <!-- Nueva columna -->
+                    <th>Subcuenta</th> <!-- Nueva columna -->
+                    <th>Nivel</th>
+                    <th>Saldo Inicial</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
+
+<<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Cuenta Contable</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="CuentaID" type="hidden" value="0" />
+
+                <!-- Código de Cuenta -->
+                <div class="col-12">
+                    <label for="CodigoCuenta" class="form-label">Código de Cuenta</label>
+                    <input type="text" class="form-control" id="CodigoCuenta" readonly>
+                </div>
+
+                <!-- Descripción de Cuenta -->
+                <div class="col-12">
+                    <label for="DescripcionCuenta" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="DescripcionCuenta" autocomplete="off">
+                </div>
+
+                <!-- Clase -->
+                <div class="col-6">
+                    <label for="Clase" class="form-label">Clase</label>
+                    <select class="form-control" id="Clase" onchange="actualizarCodigoCuenta()">
+                        <option value="">Seleccione una Clase</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Pasivo</option>
+                        <option value="3">Patrimonio</option>
+                        <option value="4">Ingresos</option>
+                        <option value="5">Gastos</option>
+                    </select>
+                </div>
+
+                <!-- Grupo -->
+                <div class="col-6">
+                    <label for="Grupo" class="form-label">Grupo</label>
+                    <select class="form-control" id="Grupo" onchange="actualizarCodigoCuenta()">
+                        <option value="">Seleccione un Grupo</option>
+                        <option value="1.1">Activo Corriente</option>
+                        <option value="1.2">Activo No Corriente</option>
+                        <option value="2.1">Pasivo Corriente</option>
+                        <option value="2.2">Pasivo No Corriente</option>
+                    </select>
+                </div>
+
+                <!-- Rubro -->
+                <div class="col-6">
+                    <label for="Rubro" class="form-label">Rubro</label>
+                    <select class="form-control" id="Rubro" onchange="actualizarCodigoCuenta()">
+                        <option value="">Seleccione un Rubro</option>
+                        <option value="1.1.1">Efectivo y equivalentes de efectivo</option>
+                        <option value="1.1.2">Inversiones a corto plazo</option>
+                    </select>
+                </div>
+
+                <!-- Código Padre -->
+                <div class="col-12">
+                    <label for="CodigoPadre" class="form-label">Código Padre</label>
+                    <select class="form-control" id="CodigoPadre">
+                        <option value="">Seleccione un Código Padre</option>
+                        <!-- Opciones cargadas dinámicamente -->
+                    </select>
+                </div>
+
+                <!-- Nivel -->
+                <div class="col-6">
+                    <label for="Nivel" class="form-label">Nivel</label>
+                    <input type="number" class="form-control" id="Nivel" min="1" max="7" readonly>
+                </div>
+
+                <!-- Saldo Inicial -->
+                <div class="col-6">
+                    <label for="SaldoInicial" class="form-label">Saldo Inicial</label>
+                    <input type="number" class="form-control" id="SaldoInicial" step="0.01">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        var tablaCuentas;
+
+      $(document).ready(function () {
+            tablaCuentas = $("#tablaCuentas").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: '@Url.Action("ListarCuentas", "CuentasContables")',
+                    type: "GET",
+                    datatype: "json"
+                },
+                "columns": [
+                    { "data": "CodigoCuenta" },
+                    { "data": "DescripcionCuenta" },
+                    { "data": "Clase" },
+                    { "data": "Grupo" },
+                    { "data": "Rubro" }, // Nueva columna
+                    { "data": "Subcuenta" }, // Nueva columna
+                    { "data": "Nivel" },
+                    { "data": "SaldoInicial" },
+                    {
+                        "data": "Activo",
+                        "render": function (data) {
+                            return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
+                        }
+                    },
+                    {
+                        "defaultContent": '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
+                            '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "90px"
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+
+            $('#tablaCuentas tbody').on('click', '.btn-editar', function () {
+                var data = tablaCuentas.row($(this).parents('tr')).data();
+                abrirModal(data);
+            });
+
+            $('#tablaCuentas tbody').on('click', '.btn-eliminar', function () {
+                var data = tablaCuentas.row($(this).parents('tr')).data();
+                eliminarCuenta(data.CuentaID);
+            });
+        });
+
+
+        function abrirModal(data) {
+            $("#CuentaID").val(data ? data.CuentaID : 0);
+            $("#CodigoCuenta").val(data ? data.CodigoCuenta : "");
+            $("#DescripcionCuenta").val(data ? data.DescripcionCuenta : "");
+            $("#Clase").val(data ? data.Clase : "");
+            $("#Grupo").val(data ? data.Grupo : "");
+            $("#Rubro").val(data ? data.Rubro : "");
+            $("#Subcuenta").val(data ? data.Subcuenta : "");
+            $("#Nivel").val(data ? data.Nivel : "");
+            $("#SaldoInicial").val(data ? data.SaldoInicial : "");
+            $("#CodigoPadre").val(data ? data.CodigoPadre : ""); // Asignar Código Padre
+            $("#exampleModalLabel").text(data ? "Editar Cuenta Contable" : "Agregar Cuenta Contable");
+            $("#mensajeError").hide();
+            $("#FormModal").modal("show");
+        }
+
+
+
+          function Guardar() {
+            var cuenta = {
+                CuentaID: parseInt($("#CuentaID").val()),
+                CodigoCuenta: $("#CodigoCuenta").val().trim(),
+                DescripcionCuenta: $("#DescripcionCuenta").val().trim(),
+                Clase: $("#Clase").val(),
+                Grupo: $("#Grupo").val(),
+                Rubro: $("#Rubro").val(),
+                CodigoPadre: $("#CodigoPadre").val(),
+                Nivel: parseInt($("#Nivel").val()),
+                SaldoInicial: parseFloat($("#SaldoInicial").val())
+            };
+
+            if (!cuenta.CodigoCuenta || !cuenta.DescripcionCuenta || !cuenta.Clase || !cuenta.Grupo || !cuenta.Rubro) {
+                $("#mensajeError").text("Todos los campos obligatorios deben ser completados.").show();
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("GuardarCuenta", "CuentasContables")',
+                type: "POST",
+                data: JSON.stringify(cuenta),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.resultado > 0) {
+                        tablaCuentas.ajax.reload();
+                        $("#FormModal").modal("hide");
+                    } else {
+                        $("#mensajeError").text(response.mensaje).show();
+                    }
+                },
+                error: function () {
+                    $("#mensajeError").text("Hubo un error al procesar la solicitud.").show();
+                }
+            });
+        }
+
+
+        function cargarCodigosPadre() {
+                $.ajax({
+                    url: '@Url.Action("ListarCuentas", "CuentasContables")',
+                    type: "GET",
+                    success: function (response) {
+                        var opciones = '<option value="">Seleccione un Código Padre</option>';
+                        response.data.forEach(function (cuenta) {
+                            opciones += `<option value="${cuenta.CodigoCuenta}">${cuenta.CodigoCuenta} - ${cuenta.DescripcionCuenta}</option>`;
+                        });
+                        $("#CodigoPadre").html(opciones);
+                    },
+                    error: function () {
+                        alert("Error al cargar los códigos padre.");
+                    }
+                });
+        }
+
+            // Llamar a cargarCodigosPadre al abrir el modal
+            $("#FormModal").on("show.bs.modal", function () {
+                cargarCodigosPadre();
+            });
+
+        function actualizarCodigoCuenta() {
+            var clase = $("#Clase").val();
+            var grupo = $("#Grupo").val();
+            var rubro = $("#Rubro").val();
+
+            if (clase && grupo && rubro) {
+                $("#CodigoCuenta").val(`${clase}.${grupo}.${rubro}`);
+            } else {
+                $("#CodigoCuenta").val(""); // Limpiar si falta algún dato
+            }
+
+            // Determinar el nivel de la cuenta automáticamente
+            var nivel = rubro.split('.').length;
+            $("#Nivel").val(nivel);
+        }
+
+
+
+        function eliminarCuenta(id) {
+            swal({
+                title: "¿Estás seguro?",
+                text: "¡No podrás recuperar esta cuenta!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "¡Sí, bórralo!",
+                closeOnConfirm: false
+            }, function () {
+                $.ajax({
+                    url: '@Url.Action("EliminarCuenta", "CuentasContables")',
+                    type: "POST",
+                    data: JSON.stringify({ CuentaID: id }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.resultado) {
+                            tablaCuentas.ajax.reload();
+                            swal("¡Eliminado!", "La cuenta ha sido eliminada.", "success");
+                        } else {
+                            swal("Error", response.mensaje, "error");
+                        }
+                    },
+                    error: function () {
+                        swal("Error", "Hubo un problema con la solicitud.", "error");
+                    }
+                });
+            });
+        }
+    </script>
+}

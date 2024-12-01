@@ -1,0 +1,181 @@
+﻿@{
+    ViewBag.Title = "Proyecciones de Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Reportes</a></li>
+    <li class="breadcrumb-item active">Proyecciones de Ventas</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-chart-line me-1"></i> Proyecciones de Ventas
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-4">
+                <label for="mesSeleccionado" class="form-label">Seleccione un Mes:</label>
+                <input type="month" id="mesSeleccionado" class="form-control" value="@DateTime.Now.ToString("yyyy-MM")">
+            </div>
+            <div class="col-2 d-flex align-items-end">
+                <button class="btn btn-primary" onclick="actualizarDatos()">Aplicar</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Gráfico -->
+            <div class="col-12 mb-3">
+                <canvas id="ventasChart"></canvas>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <!-- Tabla -->
+            <div class="col-12">
+                <table id="tablaProyecciones" class="display cell-border" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Mes Proyectado</th>
+                            <th>Proyección de Venta</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <!-- Moment.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        var ventasChart;
+        var tablaProyecciones;
+
+        $(document).ready(function () {
+            // Inicializar la tabla y gráfico con el mes actual
+            actualizarDatos();
+        });
+
+        function actualizarDatos() {
+            const mesSeleccionado = $("#mesSeleccionado").val();
+
+            if (!mesSeleccionado) {
+                alert("Seleccione un mes válido.");
+                return;
+            }
+
+            // Actualizar gráfico y tabla
+            cargarDatosGrafico(mesSeleccionado);
+            inicializarTabla(mesSeleccionado);
+        }
+
+           function cargarDatosGrafico(mesSeleccionado) {
+            $.ajax({
+                url: '@Url.Action("ObtenerProyeccionesVentas", "Proyecciones")',
+                type: "GET",
+                data: { mes: mesSeleccionado },
+                datatype: "json",
+                success: function (response) {
+                    renderizarGrafico(response.data);
+                },
+                error: function (error) {
+                    console.error("Error al cargar los datos para el gráfico:", error);
+                }
+            });
+        }
+
+               function inicializarTabla(mesSeleccionado) {
+                if (tablaProyecciones) {
+                    tablaProyecciones.destroy();
+                }
+
+                tablaProyecciones = $("#tablaProyecciones").DataTable({
+                    responsive: true,
+                    ordering: false,
+                    ajax: {
+                        url: '@Url.Action("ObtenerProyeccionesVentas", "Proyecciones")',
+                        type: "GET",
+                        data: { mes: mesSeleccionado },
+                        datatype: "json",
+                        dataSrc: "data"
+                    },
+                    columns: [
+                        {
+                            data: "MesProyectado",
+                            render: function (data) {
+                                return moment(data).format('MMMM YYYY');
+                            }
+                        },
+                        {
+                            data: "ProyeccionVenta",
+                            render: function (data) {
+                                return `₡ ${parseFloat(data).toFixed(2)}`;
+                            }
+                        }
+                    ],
+                    language: {
+                        url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                    }
+                });
+            }
+
+        function renderizarGrafico(datos) {
+            if (ventasChart) {
+                ventasChart.destroy();
+            }
+
+            var ctx = document.getElementById('ventasChart').getContext('2d');
+            var meses = datos.map(d => moment(d.MesProyectado).format('MMMM YYYY'));
+            var valores = datos.map(d => d.ProyeccionVenta);
+
+            ventasChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: meses,
+                    datasets: [{
+                        label: 'Proyección de Ventas',
+                        data: valores,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (context) {
+                                    return `₡ ${parseFloat(context.raw).toFixed(2)}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Mes'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Proyección de Ventas (₡)'
+                            },
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}

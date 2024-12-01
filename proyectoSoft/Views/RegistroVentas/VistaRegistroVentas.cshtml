@@ -1,0 +1,275 @@
+﻿@{
+    ViewBag.Title = "Registro de Ventas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Administrar</a></li>
+    <li class="breadcrumb-item active">Registro de Ventas</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i> Lista de Ventas Registradas
+    </div>
+    <div class="card-body">
+        <div class="row mb-2">
+            <div class="col-12">
+                <button type="button" class="btn btn-success" onclick="abrirModal(null)">Agregar Venta</button>
+            </div>
+        </div>
+
+        <table id="tablaVentas" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Fecha de Venta</th>
+                    <th>Categoría</th>
+                    <th>Referencia Externa</th>
+                    <th>Cuenta Contable</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="FormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h5 class="modal-title" id="exampleModalLabel">Agregar Venta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input id="VentaID" type="hidden" value="0" />
+                <div class="row g-2">
+                    <!-- Descripción -->
+                    <div class="col-12">
+                        <label for="Descripcion" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="Descripcion" autocomplete="off">
+                    </div>
+                    <!-- Monto -->
+                    <div class="col-6">
+                        <label for="Monto" class="form-label">Monto</label>
+                        <input type="number" class="form-control" id="Monto" step="0.01">
+                    </div>
+                    <!-- Fecha de Venta -->
+                    <div class="col-6">
+                        <label for="FechaVenta" class="form-label">Fecha de Venta</label>
+                        <input type="date" class="form-control" id="FechaVenta">
+                    </div>
+                    <!-- Categoría -->
+                    <div class="col-6">
+                        <label for="Categoria" class="form-label">Categoría</label>
+                        <select class="form-control" id="Categoria">
+                            <option value="">Seleccione una Categoría</option>
+                            <option value="Venta Productos">Venta Productos</option>
+                            <option value="Venta Servicios">Venta Servicios</option>
+                            <option value="Venta Internacional">Venta Internacional</option>
+                            <!-- Más opciones según sea necesario -->
+                        </select>
+                    </div>
+                    <!-- Referencia Externa -->
+                    <div class="col-6">
+                        <label for="ReferenciaExterna" class="form-label">Referencia Externa</label>
+                        <input type="text" class="form-control" id="ReferenciaExterna" autocomplete="off">
+                    </div>
+                    <!-- Cuenta Contable -->
+                    <div class="col-12">
+                        <label for="CuentaID" class="form-label">Cuenta Contable</label>
+                        <select class="form-control" id="CuentaID">
+                            <option value="">Seleccione una Cuenta Contable</option>
+                            <!-- Opciones cargadas dinámicamente -->
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12">
+                        <div id="mensajeError" class="alert alert-danger" role="alert" style="display:none;">
+                            Todos los campos obligatorios deben ser completados.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="Guardar()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script>
+        var tablaVentas;
+
+        $(document).ready(function () {
+            tablaVentas = $("#tablaVentas").DataTable({
+                responsive: true,
+                ordering: false,
+                "ajax": {
+                    url: '@Url.Action("ListarVentas", "RegistroVentas")',
+                    type: "GET",
+                    datatype: "json"
+                },
+                "columns": [
+                    { "data": "Descripcion" },
+                    { "data": "Monto" },
+                    {
+                        "data": "FechaVenta",
+                        "render": function (data, type, row) {
+                            return moment(data).format('YYYY-MM-DD'); // Usar moment.js para formatear la fecha
+                        }
+},
+                    { "data": "Categoria" },
+                    { "data": "ReferenciaExterna" },
+                    { "data": "CuentaID" },
+                    {
+                        "data": "Activo",
+                        "render": function (data) {
+                            return data ? '<span class="badge bg-success">Sí</span>' : '<span class="badge bg-danger">No</span>';
+                        }
+                    },
+                    {
+                        "defaultContent": '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
+                            '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>',
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "90px"
+                    }
+                ],
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+
+            $('#tablaVentas tbody').on('click', '.btn-editar', function () {
+                var data = tablaVentas.row($(this).parents('tr')).data();
+                abrirModal(data);
+            });
+
+            $('#tablaVentas tbody').on('click', '.btn-eliminar', function () {
+                var data = tablaVentas.row($(this).parents('tr')).data();
+                eliminarVenta(data.VentaID);
+            });
+        });
+
+        function abrirModal(data) {
+            $("#VentaID").val(data ? data.VentaID : 0);
+            $("#Descripcion").val(data ? data.Descripcion : "");
+            $("#Monto").val(data ? data.Monto : "");
+            $("#FechaVenta").val(data ? data.FechaVenta.split('T')[0] : "");
+            $("#Categoria").val(data ? data.Categoria : "");
+            $("#ReferenciaExterna").val(data ? data.ReferenciaExterna : "");
+            $("#CuentaID").val(data ? data.CuentaID : "");
+            $("#mensajeError").hide();
+
+            fetchCuentasContables();
+            $("#FormModal").modal("show");
+
+
+        }
+
+   function fetchCuentasContables() {
+    $.ajax({
+        url: '@Url.Action("ListarCuentas", "CuentasContables")',
+        type: "GET",
+        success: function (data) {
+            // Asegúrate de que el ID sea el correcto en tu HTML
+            let cuentaSelect = $("#CuentaID");
+            cuentaSelect.empty();
+            cuentaSelect.append('<option selected value="">Seleccione una Cuenta Contable</option>');
+
+            // Recorre los datos devueltos por el servidor
+            $.each(data.data, function (index, item) { // Aquí se accede a "data.data"
+                cuentaSelect.append($('<option>', {
+                    value: item.CuentaID,
+                    text: item.CodigoCuenta + " - " + item.DescripcionCuenta
+                }));
+            });
+
+            // Si estamos editando, asignar la cuenta seleccionada
+            if ($("#VentaID").val() != 0) {
+                $("#CuentaID").val($("#CuentaID").attr("data-selected"));
+            }
+        },
+        error: function (error) {
+            console.error("Error al obtener cuentas contables: ", error);
+        }
+    });
+}
+
+
+
+        function Guardar() {
+            var venta = {
+                VentaID: parseInt($("#VentaID").val()),
+                Descripcion: $("#Descripcion").val().trim(),
+                Monto: parseFloat($("#Monto").val()),
+                FechaVenta: $("#FechaVenta").val(),
+                Categoria: $("#Categoria").val(),
+                ReferenciaExterna: $("#ReferenciaExterna").val().trim(),
+                CuentaID: parseInt($("#CuentaID").val())
+            };
+
+            if (!venta.Descripcion || isNaN(venta.Monto) || !venta.FechaVenta || !venta.Categoria || isNaN(venta.CuentaID)) {
+                $("#mensajeError").text("Todos los campos obligatorios deben ser completados.").show();
+                return;
+            }
+
+            $.ajax({
+                url: '@Url.Action("GuardarVenta", "RegistroVentas")',
+                type: "POST",
+                data: JSON.stringify(venta),
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    if (response.resultado > 0) {
+                        tablaVentas.ajax.reload();
+                        $("#FormModal").modal("hide");
+                    } else {
+                        $("#mensajeError").text(response.mensaje).show();
+                    }
+                },
+                error: function () {
+                    $("#mensajeError").text("Hubo un error al procesar la solicitud.").show();
+                }
+            });
+        }
+
+        function eliminarVenta(id) {
+            swal({
+                title: "¿Estás seguro?",
+                text: "¡No podrás recuperar este registro!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "¡Sí, bórralo!",
+                closeOnConfirm: false
+            }, function () {
+                $.ajax({
+                    url: '@Url.Action("EliminarVenta", "RegistroVentas")',
+                    type: "POST",
+                    data: JSON.stringify({ VentaID: id }),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (response) {
+                        if (response.resultado) {
+                            tablaVentas.ajax.reload();
+                            swal("¡Eliminado!", "El registro ha sido eliminado.", "success");
+                        } else {
+                            swal("Error", response.mensaje, "error");
+                        }
+                    },
+                    error: function () {
+                        swal("Error", "Hubo un problema con la solicitud.", "error");
+                    }
+                });
+            });
+        }
+    </script>
+}

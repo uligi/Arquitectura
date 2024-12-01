@@ -47,6 +47,8 @@ C:\Users\ul13m\Documents\GitHub\Soft3\CapaDatos\bin\Debug\System.Web.Razor.xml
 C:\Users\ul13m\Documents\GitHub\Soft3\CapaDatos\bin\Debug\System.Web.WebPages.xml
 C:\Users\ul13m\Documents\GitHub\Soft3\CapaDatos\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\ul13m\Documents\GitHub\Soft3\CapaDatos\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
+C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\CapaDatos.dll
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\CapaDatos.pdb
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\Antlr3.Runtime.dll
@@ -68,8 +70,6 @@ C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\System.Web.Razo
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\System.Web.WebPages.xml
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.csproj.AssemblyReference.cache
-C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.csproj.CoreCompileInputs.cache
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.csproj.Up2Date
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.dll
 C:\Users\ul13m\Documents\GitHub\Arquitectura\CapaDatos\obj\Debug\CapaDatos.pdb

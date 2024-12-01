@@ -3,52 +3,92 @@
   "WorkspaceRootPath": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\permisos\\vistapermisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\permisos\\vistapermisos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\proyecciones\\proyeccionesventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\proyecciones\\proyeccionesventas.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\roles\\roles.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\roles\\roles.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_proyecciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_proyecciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capadatos\\cd_proyecciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_proyecciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\proyeccionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\proyeccionescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_recursos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_recursos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capaentidad\\proyeccionventas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\proyeccionventas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\proyecciones\\proyeccionesgastos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\proyecciones\\proyeccionesgastos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capadatos\\cd_permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capadatos\\cd_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capadatos\\cd_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capaentidad\\permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\permisos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\permisoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capaentidad\\proyecciongastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\proyecciongastos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\sistemacostoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\sistemacostoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\sistemacostos\\vistacostos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\sistemacostos\\vistacostos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_sistemacostos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_sistemacostos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capadatos\\cd_sistemacostos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_sistemacostos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capaentidad\\sistemacostos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\sistemacostos.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\ordenesproduccioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\ordenesproduccioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\controllers\\cuentascontablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\controllers\\cuentascontablescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\ordenesproduccion\\vistaordenesproduccion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\ordenesproduccion\\vistaordenesproduccion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\proyectosoft\\views\\registrogastos\\vistaregistrogastos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{F03992E9-2D28-471E-9771-17FC95FE5E79}|proyectoSoft\\Capa_Patitos.csproj|solutionrelative:proyectosoft\\views\\registrogastos\\vistaregistrogastos.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capadatos\\cd_ordenesproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CDF1470E-7BAC-488C-9484-32E7D0E631F5}|CapaDatos\\CapaDatos.csproj|solutionrelative:capadatos\\cd_ordenesproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capanegocio\\cn_ordenesproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FFC4A8A-197E-48D8-A9CC-5BDB4E46DCEC}|CapaNegocio\\CapaNegocio.csproj|solutionrelative:capanegocio\\cn_ordenesproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|c:\\users\\ul13m\\documents\\github\\arquitectura\\capaentidad\\ordenesproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A9A65E2-AA61-46A4-9132-7C75BF077124}|CapaEntidad\\CapaEntidad.csproj|solutionrelative:capaentidad\\ordenesproduccion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,7 +98,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 13,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -74,158 +114,288 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Roles.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Roles\\Roles.cshtml",
-              "RelativeDocumentMoniker": "proyectoSoft\\Views\\Roles\\Roles.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Roles\\Roles.cshtml",
-              "RelativeToolTip": "proyectoSoft\\Views\\Roles\\Roles.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-01T02:51:09.023Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CN_Usuarios.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Usuarios.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Usuarios.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Usuarios.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Usuarios.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:50:20.71Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CN_Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Roles.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Roles.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Roles.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Roles.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:50:05.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CN_Recursos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Recursos.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Recursos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Recursos.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Recursos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:50:04.267Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CN_Permisos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Permisos.cs",
-              "RelativeDocumentMoniker": "CapaNegocio\\CN_Permisos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Permisos.cs",
-              "RelativeToolTip": "CapaNegocio\\CN_Permisos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAwAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:49:49.438Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "CD_Usuarios.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Usuarios.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Usuarios.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Usuarios.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Usuarios.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAQwB8AAAAgAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:49:09.34Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "CD_Roles.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Roles.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Roles.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Roles.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Roles.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwAsAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:47:38.054Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CD_Permisos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Permisos.cs",
-              "RelativeDocumentMoniker": "CapaDatos\\CD_Permisos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Permisos.cs",
-              "RelativeToolTip": "CapaDatos\\CD_Permisos.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwB4AAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:47:33.428Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Permisos.cs",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\Permisos.cs",
-              "RelativeDocumentMoniker": "CapaEntidad\\Permisos.cs",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\Permisos.cs",
-              "RelativeToolTip": "CapaEntidad\\Permisos.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:44:14.805Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "proyectoSoft\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "proyectoSoft\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAADwAAAAAAAAAAAAAAFIAAACBAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAAEEAAABpAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-01T02:42:36.641Z",
+              "WhenOpened": "2024-12-01T22:57:41.216Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VistaPermisos.cshtml",
-              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Permisos\\VistaPermisos.cshtml",
-              "RelativeDocumentMoniker": "proyectoSoft\\Views\\Permisos\\VistaPermisos.cshtml",
-              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Permisos\\VistaPermisos.cshtml",
-              "RelativeToolTip": "proyectoSoft\\Views\\Permisos\\VistaPermisos.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAeAAAA",
+              "Title": "ProyeccionesVentas.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Proyecciones\\ProyeccionesVentas.cshtml",
+              "RelativeDocumentMoniker": "proyectoSoft\\Views\\Proyecciones\\ProyeccionesVentas.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Proyecciones\\ProyeccionesVentas.cshtml",
+              "RelativeToolTip": "proyectoSoft\\Views\\Proyecciones\\ProyeccionesVentas.cshtml",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAABIAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-01T02:42:27.249Z",
+              "WhenOpened": "2024-12-01T22:57:14.738Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
+              "Title": "ProyeccionesGastos.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Proyecciones\\ProyeccionesGastos.cshtml",
+              "RelativeDocumentMoniker": "proyectoSoft\\Views\\Proyecciones\\ProyeccionesGastos.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\Proyecciones\\ProyeccionesGastos.cshtml",
+              "RelativeToolTip": "proyectoSoft\\Views\\Proyecciones\\ProyeccionesGastos.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAACUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-01T22:56:48.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProyeccionesController.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\ProyeccionesController.cs",
+              "RelativeDocumentMoniker": "proyectoSoft\\Controllers\\ProyeccionesController.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\ProyeccionesController.cs",
+              "RelativeToolTip": "proyectoSoft\\Controllers\\ProyeccionesController.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAswCUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:56:14.981Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CN_Proyecciones.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Proyecciones.cs",
+              "RelativeDocumentMoniker": "CapaNegocio\\CN_Proyecciones.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_Proyecciones.cs",
+              "RelativeToolTip": "CapaNegocio\\CN_Proyecciones.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:55:50.877Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CD_Proyecciones.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Proyecciones.cs",
+              "RelativeDocumentMoniker": "CapaDatos\\CD_Proyecciones.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_Proyecciones.cs",
+              "RelativeToolTip": "CapaDatos\\CD_Proyecciones.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAkwEkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:55:26.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProyeccionVentas.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\ProyeccionVentas.cs",
+              "RelativeDocumentMoniker": "CapaEntidad\\ProyeccionVentas.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\ProyeccionVentas.cs",
+              "RelativeToolTip": "CapaEntidad\\ProyeccionVentas.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:55:00.422Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "PermisosController.cs",
               "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\PermisosController.cs",
               "RelativeDocumentMoniker": "proyectoSoft\\Controllers\\PermisosController.cs",
               "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\PermisosController.cs",
               "RelativeToolTip": "proyectoSoft\\Controllers\\PermisosController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAkAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T02:42:03.555Z",
+              "WhenOpened": "2024-12-01T22:58:14.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProyeccionGastos.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\ProyeccionGastos.cs",
+              "RelativeDocumentMoniker": "CapaEntidad\\ProyeccionGastos.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\ProyeccionGastos.cs",
+              "RelativeToolTip": "CapaEntidad\\ProyeccionGastos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:54:45.681Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RolesController.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\RolesController.cs",
+              "RelativeDocumentMoniker": "proyectoSoft\\Controllers\\RolesController.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\RolesController.cs",
+              "RelativeToolTip": "proyectoSoft\\Controllers\\RolesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:30:14.627Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SistemaCostos.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\SistemaCostos.cs",
+              "RelativeDocumentMoniker": "CapaEntidad\\SistemaCostos.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\SistemaCostos.cs",
+              "RelativeToolTip": "CapaEntidad\\SistemaCostos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:27:32.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "VistaCostos.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\SistemaCostos\\VistaCostos.cshtml",
+              "RelativeDocumentMoniker": "proyectoSoft\\Views\\SistemaCostos\\VistaCostos.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\SistemaCostos\\VistaCostos.cshtml",
+              "RelativeToolTip": "proyectoSoft\\Views\\SistemaCostos\\VistaCostos.cshtml",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAcwAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-01T22:26:07.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SistemaCostosController.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\SistemaCostosController.cs",
+              "RelativeDocumentMoniker": "proyectoSoft\\Controllers\\SistemaCostosController.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\SistemaCostosController.cs",
+              "RelativeToolTip": "proyectoSoft\\Controllers\\SistemaCostosController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:25:38.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CN_SistemaCostos.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_SistemaCostos.cs",
+              "RelativeDocumentMoniker": "CapaNegocio\\CN_SistemaCostos.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_SistemaCostos.cs",
+              "RelativeToolTip": "CapaNegocio\\CN_SistemaCostos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:24:57.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CD_SistemaCostos.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_SistemaCostos.cs",
+              "RelativeDocumentMoniker": "CapaDatos\\CD_SistemaCostos.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_SistemaCostos.cs",
+              "RelativeToolTip": "CapaDatos\\CD_SistemaCostos.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:24:39.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CuentasContablesController.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\CuentasContablesController.cs",
+              "RelativeDocumentMoniker": "proyectoSoft\\Controllers\\CuentasContablesController.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\CuentasContablesController.cs",
+              "RelativeToolTip": "proyectoSoft\\Controllers\\CuentasContablesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:19:53.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "VistaRegistroGastos.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\RegistroGastos\\VistaRegistroGastos.cshtml",
+              "RelativeDocumentMoniker": "proyectoSoft\\Views\\RegistroGastos\\VistaRegistroGastos.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\RegistroGastos\\VistaRegistroGastos.cshtml",
+              "RelativeToolTip": "proyectoSoft\\Views\\RegistroGastos\\VistaRegistroGastos.cshtml",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAAH0AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-01T22:18:52.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "VistaOrdenesProduccion.cshtml",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\OrdenesProduccion\\VistaOrdenesProduccion.cshtml",
+              "RelativeDocumentMoniker": "proyectoSoft\\Views\\OrdenesProduccion\\VistaOrdenesProduccion.cshtml",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Views\\OrdenesProduccion\\VistaOrdenesProduccion.cshtml",
+              "RelativeToolTip": "proyectoSoft\\Views\\OrdenesProduccion\\VistaOrdenesProduccion.cshtml",
+              "ViewState": "AQIAAGgAAAAAAAAAAAAiwH4AAAAZAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-01T22:16:23.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OrdenesProduccionController.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\OrdenesProduccionController.cs",
+              "RelativeDocumentMoniker": "proyectoSoft\\Controllers\\OrdenesProduccionController.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\proyectoSoft\\Controllers\\OrdenesProduccionController.cs",
+              "RelativeToolTip": "proyectoSoft\\Controllers\\OrdenesProduccionController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:15:07.014Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CN_OrdenesProduccion.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_OrdenesProduccion.cs",
+              "RelativeDocumentMoniker": "CapaNegocio\\CN_OrdenesProduccion.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaNegocio\\CN_OrdenesProduccion.cs",
+              "RelativeToolTip": "CapaNegocio\\CN_OrdenesProduccion.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAA5wDAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:14:43.823Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CD_OrdenesProduccion.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_OrdenesProduccion.cs",
+              "RelativeDocumentMoniker": "CapaDatos\\CD_OrdenesProduccion.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaDatos\\CD_OrdenesProduccion.cs",
+              "RelativeToolTip": "CapaDatos\\CD_OrdenesProduccion.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAgwB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:14:10.696Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "OrdenesProduccion.cs",
+              "DocumentMoniker": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\OrdenesProduccion.cs",
+              "RelativeDocumentMoniker": "CapaEntidad\\OrdenesProduccion.cs",
+              "ToolTip": "C:\\Users\\ul13m\\Documents\\GitHub\\Arquitectura\\CapaEntidad\\OrdenesProduccion.cs",
+              "RelativeToolTip": "CapaEntidad\\OrdenesProduccion.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:13:51.706Z",
               "EditorCaption": ""
             }
           ]

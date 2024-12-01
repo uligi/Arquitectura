@@ -120,9 +120,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Content Include="Content\css\Factura.css" />
     <Compile Include="Controllers\AccesoController.cs" />
+    <Compile Include="Controllers\CuentasContablesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdenesProduccionController.cs" />
     <Compile Include="Controllers\PermisosController.cs" />
+    <Compile Include="Controllers\ProyeccionesController.cs" />
+    <Compile Include="Controllers\RegistroGastosController.cs" />
+    <Compile Include="Controllers\RegistroVentasController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\SistemaCostosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -565,6 +571,13 @@
     <Content Include="Views\Reportes\MontosPorPeriodo.cshtml" />
     <Content Include="Views\Roles\Roles.cshtml" />
     <Content Include="Views\Permisos\VistaPermisos.cshtml" />
+    <Content Include="Views\CuentasContables\VistaCuentasContables.cshtml" />
+    <Content Include="Views\RegistroVentas\VistaRegistroVentas.cshtml" />
+    <Content Include="Views\RegistroGastos\VistaRegistroGastos.cshtml" />
+    <Content Include="Views\OrdenesProduccion\VistaOrdenesProduccion.cshtml" />
+    <Content Include="Views\SistemaCostos\VistaCostos.cshtml" />
+    <Content Include="Views\Proyecciones\ProyeccionesGastos.cshtml" />
+    <Content Include="Views\Proyecciones\ProyeccionesVentas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

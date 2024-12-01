@@ -1,3 +1,5 @@
+C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Patitos.csproj.AssemblyReference.cache
+C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Patitos.csproj.CoreCompileInputs.cache
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\proyectoSoft.dll.config
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\proyectoSoft.dll
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\proyectoSoft.pdb
@@ -69,8 +71,6 @@ C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\es\System.Web.WebP
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\es\System.Web.WebPages.Deployment.resources.dll
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\es\System.Web.WebPages.Razor.resources.dll
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\bin\es\System.Web.Optimization.resources.dll
-C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Patitos.csproj.AssemblyReference.cache
-C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Patitos.csproj.CoreCompileInputs.cache
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\Capa_Pat.BC075FC2.Up2Date
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\proyectoSoft.dll
 C:\Users\ul13m\Documents\GitHub\Arquitectura\proyectoSoft\obj\Debug\proyectoSoft.pdb

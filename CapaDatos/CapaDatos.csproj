@@ -72,8 +72,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CD_CuentasContables.cs" />
+    <Compile Include="CD_OrdenesProduccion.cs" />
     <Compile Include="CD_Permisos.cs" />
+    <Compile Include="CD_Proyecciones.cs" />
+    <Compile Include="CD_RegistroGastos.cs" />
+    <Compile Include="CD_RegistroVentas.cs" />
     <Compile Include="CD_Roles.cs" />
+    <Compile Include="CD_SistemaCostos.cs" />
     <Compile Include="CD_Usuarios.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Sistema de Costos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4 mt-4">
+    <li class="breadcrumb-item"><a href="index.html">Contabilidad de Costos</a></li>
+    <li class="breadcrumb-item active">Sistema de Costos</li>
+</ol>
+
+<div class="card">
+    <div class="card-header">
+        <i class="fas fa-chart-line me-1"></i> Resumen de Costos y Rentabilidad
+    </div>
+    <div class="card-body">
+        <table id="tablaCostos" class="display cell-border" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Orden Producción</th>
+                    <th>Descripción</th>
+                    <th>Total Costos</th>
+                    <th>Total Ventas</th>
+                    <th>Rentabilidad</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $("#tablaCostos").DataTable({
+                responsive: true,
+                ordering: false,
+                ajax: {
+                    url: '@Url.Action("ResumenCostos", "SistemaCostos")',
+                    type: "GET",
+                    datatype: "json"
+                },
+                columns: [
+                    { data: "OrdenProduccionID" },
+                    { data: "DescripcionOrden" },
+                    { data: "TotalCostos", render: $.fn.dataTable.render.number(',', '.', 2, '₡') },
+                    { data: "TotalVentas", render: $.fn.dataTable.render.number(',', '.', 2, '₡') },
+                    { data: "Rentabilidad", render: $.fn.dataTable.render.number(',', '.', 2, '₡') }
+                ],
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
+                }
+            });
+        });
+    </script>
+}
