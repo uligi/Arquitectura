@@ -1,90 +1,6 @@
 use PatitosFinancieros_Suite
 go
 
-------------------------------- Permisos----------------------------
-
--- Permiso 1
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarPermisoModulo
-    @NombreModulo = 'Gestión de Productos',
-    @RolPermitido = 'gerente',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
--- Permiso 2
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarPermisoModulo
-    @NombreModulo = 'Gestión de Inventario',
-    @RolPermitido = 'empleado',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
--- Permiso 3
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarPermisoModulo
-    @NombreModulo = 'Reportes de Ventas',
-    @RolPermitido = 'gerente',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
--- Permiso 4
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarPermisoModulo
-    @NombreModulo = 'Gestión de Usuarios',
-    @RolPermitido = 'gerente',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
-------------------------------- Roles----------------------------
-
--- Rol 1
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarRol
-    @NombreRol = 'Administrador',
-    @Descripcion = 'Tiene acceso completo al sistema, incluyendo configuración y administración de usuarios.',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
--- Rol 2
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarRol
-    @NombreRol = 'Gerente',
-    @Descripcion = 'Puede acceder a módulos relacionados con reportes y gestión general.',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
--- Rol 3
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarRol
-    @NombreRol = 'Empleado',
-    @Descripcion = 'Tiene acceso a las funcionalidades básicas asignadas para la gestión diaria.',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
--- Rol 4
-DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
-EXEC sp_RegistrarRol
-    @NombreRol = 'Soporte Técnico',
-    @Descripcion = 'Responsable de la gestión técnica y resolución de problemas dentro del sistema.',
-    @Resultado = @Resultado OUTPUT,
-    @Mensaje = @Mensaje OUTPUT;
-PRINT @Mensaje;
-Go
-
 ------------------------------- USUARIOS----------------------------
 
 -- Usuario 1
@@ -187,6 +103,90 @@ EXEC sp_RegistrarUsuario
     @Apellido = 'Jiménez',
     @Correo = 'carlos.jimenez@example.com',
     @RolID = 1,
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+------------------------------- Permisos----------------------------
+
+-- Permiso 1
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarPermisoModulo
+    @NombreModulo = 'Gestión de Productos',
+    @RolPermitido = 'gerente',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Permiso 2
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarPermisoModulo
+    @NombreModulo = 'Gestión de Inventario',
+    @RolPermitido = 'empleado',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Permiso 3
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarPermisoModulo
+    @NombreModulo = 'Reportes de Ventas',
+    @RolPermitido = 'gerente',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Permiso 4
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarPermisoModulo
+    @NombreModulo = 'Gestión de Usuarios',
+    @RolPermitido = 'gerente',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+------------------------------- Roles----------------------------
+
+-- Rol 1
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarRol
+    @NombreRol = 'Administrador',
+    @Descripcion = 'Tiene acceso completo al sistema, incluyendo configuración y administración de usuarios.',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Rol 2
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarRol
+    @NombreRol = 'Gerente',
+    @Descripcion = 'Puede acceder a módulos relacionados con reportes y gestión general.',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Rol 3
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarRol
+    @NombreRol = 'Empleado',
+    @Descripcion = 'Tiene acceso a las funcionalidades básicas asignadas para la gestión diaria.',
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Rol 4
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarRol
+    @NombreRol = 'Soporte Técnico',
+    @Descripcion = 'Responsable de la gestión técnica y resolución de problemas dentro del sistema.',
     @Resultado = @Resultado OUTPUT,
     @Mensaje = @Mensaje OUTPUT;
 PRINT @Mensaje;

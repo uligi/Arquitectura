@@ -1,8 +1,6 @@
-﻿using CapaEntidad;
+﻿using System.Web.Mvc;
 using CapaNegocio;
-using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
+using CapaEntidad;
 
 namespace proyectoSoft.Controllers
 {
@@ -24,25 +22,15 @@ namespace proyectoSoft.Controllers
         [HttpGet]
         public JsonResult ObtenerProyeccionesGastos()
         {
-            List<ProyeccionGastos> lista = objNegocio.ObtenerProyeccionesGastos();
-            return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
+            var data = objNegocio.ObtenerProyeccionesDeGastos();
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
-        public JsonResult ObtenerProyeccionesVentas(string mes)
+        public JsonResult ObtenerProyeccionesVentas()
         {
-            // Convertir "yyyy-MM" a DateTime con el primer día del mes
-            if (DateTime.TryParseExact(mes + "-01", "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime fechaInicio))
-            {
-                // Pasar el valor convertido al método de negocio
-                List<ProyeccionVentas> lista = objNegocio.ObtenerProyeccionesVentas(fechaInicio);
-                return Json(new { data = lista }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                return Json(new { data = new List<ProyeccionVentas>() }, JsonRequestBehavior.AllowGet);
-            }
+            var data = objNegocio.ObtenerProyeccionesDeVentas();
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
-
     }
 }

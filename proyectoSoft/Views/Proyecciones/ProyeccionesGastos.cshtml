@@ -3,120 +3,78 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<ol class="breadcrumb mb-4 mt-4">
-    <li class="breadcrumb-item"><a href="index.html">Reportes</a></li>
-    <li class="breadcrumb-item active">Proyecciones de Gastos</li>
-</ol>
-
 <div class="card">
     <div class="card-header">
-        <i class="fas fa-chart-bar me-1"></i> Proyecciones de Gastos
+        Proyecciones de Gastos
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-12 mb-3">
-                <canvas id="GastosChart"></canvas>
+            <div class="col-md-6">
+                <canvas id="gastosBarChart"></canvas>
+            </div>
+            <div class="col-md-6">
+                <canvas id="gastosLineChart"></canvas>
             </div>
         </div>
-        <table id="tablaProyeccionesGastos" class="display cell-border" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Mes Proyectado</th>
-                    <th>Proyección de Gasto</th>
-                </tr>
-            </thead>
-        </table>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <canvas id="gastosPieChart"></canvas>
+            </div>
+        </div>
     </div>
 </div>
 
 @section scripts {
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-
-        var GastosChart;
-        var tablaProyecciones;
-
         $(document).ready(function () {
-            $("#tablaProyeccionesGastos").DataTable({
-                ajax: {
-                    url: '@Url.Action("ObtenerProyeccionesGastos", "Proyecciones")',
-                    type: "GET",
-                    datatype: "json"
-                },
-                columns: [
-                    {
-                        data: "MesProyectado",
-                        render: function (data) {
-                            return moment(data).format('MMMM YYYY');
-                        }
-                    },
-                    { data: "ProyeccionGasto", render: $.fn.dataTable.render.number(',', '.', 2, '₡') }
-                ],
-                language: {
-                    url: "https://cdn.datatables.net/plug-ins/1.11.3/i18n/es_es.json"
-                }
+            $.get('@Url.Action("ObtenerProyeccionesGastos", "Proyecciones")', function (response) {
+                const labels = response.data.map(item => item.MesProyectado);
+                const data = response.data.map(item => item.ProyeccionGasto);
+
+                // Gráfico de barras
+                new Chart(document.getElementById('gastosBarChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Proyección de Gastos',
+                            data: data,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+
+                // Gráfico de líneas
+                new Chart(document.getElementById('gastosLineChart').getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Proyección de Gastos',
+                            data: data,
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1
+                        }]
+                    }
+                });
+
+                // Gráfico de pastel
+                new Chart(document.getElementById('gastosPieChart').getContext('2d'), {
+                    type: 'pie',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Proyección de Gastos',
+                            data: data,
+                            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+                        }]
+                    }
+                });
             });
         });
-
-        function generarGrafico(datos) {
-            if (!Array.isArray(datos)) {
-                console.error("Los datos para el gráfico no son válidos:", datos);
-                return;
-            }
-
-            if (ventasChart) {
-                ventasChart.destroy();
-            }
-
-            var ctx = document.getElementById('ventasChart').getContext('2d');
-            var meses = datos.map(d => moment(d.MesProyectado).format('MMMM YYYY'));
-            var valores = datos.map(d => d.ProyeccionVenta);
-
-            ventasChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: meses,
-                    datasets: [{
-                        label: 'Proyección de Ventas',
-                        data: valores,
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderWidth: 2
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top'
-                        },
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return `₡ ${parseFloat(context.raw).toFixed(2)}`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            title: {
-                                display: true,
-                                text: 'Mes'
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: 'Proyección de Ventas (₡)'
-                            },
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        }
     </script>
 }

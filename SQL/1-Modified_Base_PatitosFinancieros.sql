@@ -118,7 +118,7 @@ GO
 CREATE TABLE PermisosModulo (
     ModuloID INT PRIMARY KEY IDENTITY(1,1),
     NombreModulo NVARCHAR(100) UNIQUE NOT NULL,
-    RolPermitido NVARCHAR(20) CHECK (RolPermitido IN ('empleado', 'gerente')),
+    RolPermitido NVARCHAR(20) CHECK (RolPermitido IN ('Empleado', 'Gerente', 'Administrador','Recursos Humanos')),
     Activo BIT NOT NULL DEFAULT 1  -- Borrado lógico
 );
 GO

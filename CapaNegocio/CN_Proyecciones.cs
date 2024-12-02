@@ -1,7 +1,6 @@
-﻿using CapaDatos;
+﻿using System.Collections.Generic;
+using CapaDatos;
 using CapaEntidad;
-using System;
-using System.Collections.Generic;
 
 namespace CapaNegocio
 {
@@ -9,15 +8,14 @@ namespace CapaNegocio
     {
         private CD_Proyecciones objDatos = new CD_Proyecciones();
 
-        public List<ProyeccionGastos> ObtenerProyeccionesGastos()
+        public List<ProyeccionGastos> ObtenerProyeccionesDeGastos()
         {
-            return objDatos.ObtenerProyeccionesGastos();
+            return objDatos.ObtenerProyeccionesDeGastos();
         }
 
-        public List<ProyeccionVentas> ObtenerProyeccionesVentas(DateTime mesSeleccionado)
+        public List<ProyeccionVentas> ObtenerProyeccionesDeVentas()
         {
-            return objDatos.ObtenerProyeccionesVentas(mesSeleccionado);
+            return objDatos.ObtenerProyeccionesDeVentas();
         }
-
     }
 }

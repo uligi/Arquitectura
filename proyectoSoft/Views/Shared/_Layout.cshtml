@@ -1,19 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap" rel="stylesheet">
     <title>@ViewBag.Title - Patitos Financieros S.A.</title>
     @Styles.Render("~/Content/css")
-    
 </head>
 <body class="sb-nav-fixed" style="background-color: #f0f0f0;">
     <!-- Navbar superior -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #000000;">
         <a class="navbar-brand ps-3 me-3" href="@Url.Action("Index", "Home")">
-            <img src="~/Imagenes/Ilustración254.png" alt="Logo Patitos Financieros" style="max-width: 40px; vertical-align: middle; margin-right: 10px;">
+            <img src="~/Imagenes/Ilustración254.png" alt="Logo Patitos Financieros" style="max-width: 40px; margin-right: 10px;">
             <span style="color: #FFD700;">Patitos Financieros</span>
         </a>
 
@@ -23,8 +21,10 @@
 
         <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw" style="color: #FFA500;"></i></a>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown">
+                    <i class="fas fa-user fa-fw" style="color: #FFA500;"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
                     <li><a class="dropdown-item" href="@Url.Action("CerrarSesion", "Acceso")">Cerrar Sesión</a></li>
                 </ul>
             </li>
@@ -37,9 +37,11 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="background-color: #000000;">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        @if (Session["Rol"] != null && (Session["Rol"].ToString() == "Gerente" || Session["Rol"].ToString() == "Contador" || Session["Rol"].ToString() == "Analista de Ventas"))
-                                                                        {
+
+                        <!-- Módulos Financieros -->
                         <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Módulos Financieros</div>
+
+                        <!-- Contabilidad de Costos -->
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseContabilidad" aria-expanded="false" style="color: #FFF;">
                             <div class="sb-nav-link-icon"><i class="fas fa-calculator" style="color: #FFA500;"></i></div>
                             Contabilidad de Costos
@@ -47,45 +49,12 @@
                         </a>
                         <div class="collapse" id="collapseContabilidad" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("CostosPorOrden", "Contabilidad")" style="color: #FFF;">Sistemas de Costos</a>
+                                <a class="nav-link" href="@Url.Action("VistaCostos", "SistemaCostos")" style="color: #FFF;">Sistemas de Costos</a>
+                                <a class="nav-link" href="@Url.Action("VistaOrdenesProduccion", "OrdenesProduccion")" style="color: #FFF;">Órdenes de Producción</a>
                             </nav>
                         </div>
-                                                                        }
 
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
-                                                                        {
-                        <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Reportes</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" style="color: #FFF;">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-bar" style="color: #FFA500;"></i></div>
-                            Proyecciones
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color: #FFA500;"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseReportes" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("ProyeccionesGastos", "Proyecciones")" style="color: #FFF;">Proyecciones de Gastos</a>
-                                <a class="nav-link" href="@Url.Action("ProyeccionesVentas", "Proyecciones")" style="color: #FFF;">Proyecciones de Ventas</a>
-                            </nav>
-                        </div>
-                                                                        }
-
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
-                                                                        {
-                        <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Seguridad</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSeguridad" aria-expanded="false" style="color: #FFF;">
-                            <div class="sb-nav-link-icon"><i class="fas fa-shield-alt" style="color: #FFA500;"></i></div>
-                            Usuarios y Roles
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color: #FFA500;"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseSeguridad" data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="@Url.Action("Usuarios", "Usuario")" style="color: #FFF;">Usuarios</a>
-                                <a class="nav-link" href="@Url.Action("Roles", "Roles")" style="color: #FFF;">Roles</a>
-                                <a class="nav-link" href="@Url.Action("VistaPermisos", "Permisos")" style="color: #FFF;">Permisos</a>
-                            </nav>
-                        </div>
-                                                                        }
-
-                        <!-- Otras secciones -->
+                        <!-- Control -->
                         <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Control</div>
                         <a class="nav-link" href="@Url.Action("VistaCuentasContables", "CuentasContables")" style="color: #FFF;">
                             <div class="sb-nav-link-icon"><i class="fas fa-book" style="color: #FFA500;"></i></div>
@@ -99,20 +68,55 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign" style="color: #FFA500;"></i></div>
                             Registro de Ventas
                         </a>
+
+                        <!-- Reportes -->
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
+                        {
+                            <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Reportes</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" style="color: #FFF;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-bar" style="color: #FFA500;"></i></div>
+                                Proyecciones
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color: #FFA500;"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseReportes" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("ProyeccionesGastos", "Proyecciones")" style="color: #FFF;">Proyecciones de Gastos</a>
+                                    <a class="nav-link" href="@Url.Action("ProyeccionesVentas", "Proyecciones")" style="color: #FFF;">Proyecciones de Ventas</a>
+                                </nav>
+                            </div>
+                        }
+
+                        <!-- Seguridad -->
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
+                        {
+                            <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Seguridad</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSeguridad" aria-expanded="false" style="color: #FFF;">
+                                <div class="sb-nav-link-icon"><i class="fas fa-shield-alt" style="color: #FFA500;"></i></div>
+                                Usuarios y Roles
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color: #FFA500;"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseSeguridad" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="@Url.Action("Usuarios", "Usuario")" style="color: #FFF;">Usuarios</a>
+                                    <a class="nav-link" href="@Url.Action("Roles", "Roles")" style="color: #FFF;">Roles</a>
+                                    <a class="nav-link" href="@Url.Action("VistaPermisos", "Permisos")" style="color: #FFF;">Permisos</a>
+                                </nav>
+                            </div>
+                        }
                     </div>
                 </div>
 
-                <!-- Pie de página de la barra lateral -->
+                <!-- Pie de página -->
                 <div class="sb-sidenav-footer" style="background-color: #FFD700;">
                     <div class="small" style="color: #000;">Bienvenido:</div>
                     @if (Session["NombreUsuario"] != null)
-                                                            {
-                    <span style="color: #000;">@Session["NombreUsuario"] - @Session["Rol"]</span>
-                                                            }
-                                                            else
-                                                            {
-                    <span style="color: #000;">Invitado</span>
-                                                            }
+                    {
+                        <span style="color: #000;">@Session["NombreUsuario"] - @Session["Rol"]</span>
+                    }
+                    else
+                    {
+                        <span style="color: #000;">Invitado</span>
+                    }
                 </div>
             </nav>
         </div>
@@ -134,22 +138,9 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/complementos")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
-    <script>
-        $(document).ready(function () {
-            // Código para iniciar tutorial
-            $('#startTutorial').click(function () {
-                $('.collapse').collapse('show');
-                introJs().setOptions({
-                    // Configuración de tutorial...
-                }).start();
-            });
-        });
-    </script>
 </body>
 </html>

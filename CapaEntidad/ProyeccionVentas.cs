@@ -8,7 +8,8 @@ namespace CapaEntidad
 {
     public class ProyeccionVentas
     {
-        public DateTime MesProyectado { get; set; }
+        public string MesProyectado { get; set; }
         public decimal ProyeccionVenta { get; set; }
     }
 }
+
