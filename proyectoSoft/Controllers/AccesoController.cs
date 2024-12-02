@@ -60,28 +60,25 @@ namespace Administradores.Controllers
         }
 
         [HttpPost]
-        public ActionResult CambiarClave( string UsuarioID,string claveActual,string nuevaClave, string confirmarClave )
+        public ActionResult CambiarClave(string UsuarioID, string claveActual, string nuevaClave, string confirmarClave)
         {
+            Usuarios oUsuario = new CN_Usuario().Listar()
+                .Where(u => u.UsuarioID == int.Parse(UsuarioID)).FirstOrDefault();
 
-            Usuarios oUsuario = new Usuarios();
-            oUsuario = new CN_Usuario().Listar()
-                .Where(u => u.UsuarioID==int.Parse(UsuarioID)).FirstOrDefault();
             if (oUsuario.Contrasena != CN_Recursos.ConvertirSha256(claveActual))
             {
                 TempData["UsuarioID"] = UsuarioID;
                 ViewData["vClave"] = "";
-                ViewBag.Error = "La contraseña actual no es correcta";
+                ViewBag.Error = "La contraseña actual no es correcta.";
                 return View();
             }
             else if (nuevaClave != confirmarClave)
             {
                 TempData["UsuarioID"] = UsuarioID;
                 ViewData["vClave"] = claveActual;
-                ViewBag.Error = "Las contraseñas no coinciden";
+                ViewBag.Error = "Las contraseñas no coinciden.";
                 return View();
             }
-            ViewData["vClave"] = "";
-            nuevaClave = CN_Recursos.ConvertirSha256(nuevaClave);
 
             string mensaje = string.Empty;
             bool respuesta = new CN_Usuario().CambiarClave(int.Parse(UsuarioID), nuevaClave, out mensaje);
@@ -96,8 +93,8 @@ namespace Administradores.Controllers
                 ViewBag.Error = mensaje;
                 return View();
             }
-
         }
+
 
 
         public ActionResult CerrarSesion()

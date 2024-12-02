@@ -1,6 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidad;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CapaNegocio
 {
@@ -15,12 +16,18 @@ namespace CapaNegocio
         }
 
         // Método para registrar un nuevo usuario
-        public int Registrar(Usuarios obj, out string Mensaje)
+        public int Registrar(Usuarios obj, out string mensaje)
         {
+
+            if (!ValidarCedula(obj.Cedula.ToString(), out mensaje))
+            {
+                return 0; // Indica que la validación de la cédula falló
+            }
             // Generar clave y convertir a hash
             string clave = CN_Recursos.GenerarClave();
             obj.Contrasena = CN_Recursos.ConvertirSha256(clave); // Convertir contraseña a SHA-256
-            int resultado = objCapaDato.Registrar(obj, out Mensaje);
+
+            int resultado = objCapaDato.Registrar(obj, out mensaje);
 
             if (resultado > 0)
             {
@@ -36,11 +43,86 @@ namespace CapaNegocio
             return resultado;
         }
 
+        private bool ValidarContrasena(string contrasena, out string mensaje)
+        {
+            mensaje = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(contrasena))
+            {
+                mensaje = "La contraseña no puede estar vacía.";
+                return false;
+            }
+            if (contrasena.Length < 8)
+            {
+                mensaje = "La contraseña debe tener al menos 8 caracteres.";
+                return false;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(contrasena, "[A-Z]"))
+            {
+                mensaje = "La contraseña debe contener al menos una letra mayúscula.";
+                return false;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(contrasena, "[a-z]"))
+            {
+                mensaje = "La contraseña debe contener al menos una letra minúscula.";
+                return false;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(contrasena, "[0-9]"))
+            {
+                mensaje = "La contraseña debe contener al menos un número.";
+                return false;
+            }
+            if (!System.Text.RegularExpressions.Regex.IsMatch(contrasena, "[^a-zA-Z0-9]"))
+            {
+                mensaje = "La contraseña debe contener al menos un carácter especial.";
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidarCedula(string cedula, out string mensaje)
+        {
+            mensaje = string.Empty;
+
+            // Verificar que no sea nula ni vacía
+            if (string.IsNullOrWhiteSpace(cedula))
+            {
+                mensaje = "La cédula no puede estar vacía.";
+                return false;
+            }
+
+            // Verificar que tenga 9 dígitos para nacionales o 10 dígitos para extranjeros
+            if (cedula.Length == 9 || cedula.Length == 10)
+            {
+                if (!cedula.All(char.IsDigit))
+                {
+                    mensaje = "La cédula debe contener solo dígitos numéricos.";
+                    return false;
+                }
+            }
+            else
+            {
+                mensaje = "La cédula debe tener 9 dígitos para nacionales o 10 para extranjeros.";
+                return false;
+            }
+
+            return true;
+        }
+
         // Método para editar un usuario
         public bool Editar(Usuarios obj, out string Mensaje)
         {
+            // Validar la cédula antes de editar
+            if (!ValidarCedula(obj.Cedula.ToString(), out Mensaje))
+            {
+                return false; // Indica que la validación de la cédula falló
+            }
+
+            // Llamar al método de la capa de datos
             return objCapaDato.Editar(obj, out Mensaje);
         }
+
 
         // Método para eliminar un usuario
         public bool Eliminar(int id, out string Mensaje)
@@ -49,13 +131,20 @@ namespace CapaNegocio
         }
 
         // Método para cambiar la clave de un usuario
-        public bool CambiarClave(int UsuarioID, string nuevaClave, out string Mensaje)
+        public bool CambiarClave(int UsuarioID, string nuevaClave, out string mensaje)
         {
-            return objCapaDato.CambiarClave(UsuarioID, nuevaClave, out Mensaje);
-        }
+            if (!ValidarContrasena(nuevaClave, out mensaje))
+            {
+                return false; // Indica que la validación falló
+            }
 
-        // Método para desactivar un usuario (borrado lógico)
-        public bool DesactivarUsuario(int id, out string Mensaje)
+            nuevaClave = CN_Recursos.ConvertirSha256(nuevaClave);
+            return objCapaDato.CambiarClave(UsuarioID, nuevaClave, out mensaje);
+        }
+    
+
+    // Método para desactivar un usuario (borrado lógico)
+    public bool DesactivarUsuario(int id, out string Mensaje)
         {
             return objCapaDato.Eliminar(id, out Mensaje);
         }

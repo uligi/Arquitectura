@@ -55,7 +55,7 @@ BEGIN
         END
 
         INSERT INTO Usuarios (Contrasena, RestablecerContrasena, Activo, FechaCreacion, Cedula, RolID)
-        VALUES (@Contrasena, @RestablecerContraseña, 1, GETDATE(), @Cedula, @RolID);
+        VALUES (@Contrasena, 1, 1, GETDATE(), @Cedula, @RolID);
 
         SET @Resultado = SCOPE_IDENTITY();
         SET @Mensaje = 'Usuario registrado correctamente.';
