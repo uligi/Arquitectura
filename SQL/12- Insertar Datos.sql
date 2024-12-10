@@ -6,12 +6,42 @@ go
 -- Usuario 1
 DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
 EXEC sp_RegistrarUsuario
-    @Contrasena = '31f7462d336bd1ef7a3675dd2c6705fb0d224cf35b9b424a0370e03a1e92dea4', -- Contrase : 12345Pass!
+    @Contrasena = '6220b2370e3b7f5773a73fe464b9a033181c9f43ae483673f58d4af709d5b4d3', -- Contrase : 12345Pass!
     @RestablecerContraseña = 0,
     @Cedula = 101010101,
     @Nombre = 'Juan',
     @Apellido = 'Pérez',
     @Correo = 'juan.perez@example.com',
+    @RolID = 1,
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Usuario 1
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarUsuario
+    @Contrasena = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', -- Contrase : 123!
+    @RestablecerContraseña = 0,
+    @Cedula = 111111111,
+    @Nombre = 'Patito',
+    @Apellido = 'Financiero',
+    @Correo = 'Patitos@Financieros.com',
+    @RolID = 1,
+    @Resultado = @Resultado OUTPUT,
+    @Mensaje = @Mensaje OUTPUT;
+PRINT @Mensaje;
+Go
+
+-- Usuario 1
+DECLARE @Resultado INT, @Mensaje NVARCHAR(500);
+EXEC sp_RegistrarUsuario
+    @Contrasena = 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', -- ClaveClave123@
+    @RestablecerContraseña = 0,
+    @Cedula = 111111112,
+    @Nombre = 'Patito',
+    @Apellido = 'Financiero',
+    @Correo = 'Patitos@Financieros.com',
     @RolID = 1,
     @Resultado = @Resultado OUTPUT,
     @Mensaje = @Mensaje OUTPUT;

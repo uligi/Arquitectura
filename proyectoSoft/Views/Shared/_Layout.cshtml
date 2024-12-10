@@ -70,7 +70,7 @@
                         </a>
 
                         <!-- Reportes -->
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
+                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente" )
                         {
                             <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Reportes</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseReportes" aria-expanded="false" style="color: #FFF;">
@@ -87,19 +87,26 @@
                         }
 
                         <!-- Seguridad -->
-                        @if (Session["Rol"] != null && Session["Rol"].ToString() == "Gerente")
+                        @if (Session["Rol"] != null && Session["Rol"].ToString()  == "Gerente" || Session["Rol"].ToString() == "Administrador")
                         {
                             <div class="sb-sidenav-menu-heading" style="color: #FFD700;">Seguridad</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseSeguridad" aria-expanded="false" style="color: #FFF;">
                                 <div class="sb-nav-link-icon"><i class="fas fa-shield-alt" style="color: #FFA500;"></i></div>
-                                Usuarios y Roles
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color: #FFA500;"></i></div>
+                                Usuarios  @if (Session["Rol"] != null && Session["Rol"].ToString() == "Administrador")
+                                {
+                                    @: y Roles
+                                        
+                                        }
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down" style="color: #FFA500;"></i></div>
                             </a>
                             <div class="collapse" id="collapseSeguridad" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="@Url.Action("Usuarios", "Usuario")" style="color: #FFF;">Usuarios</a>
-                                    <a class="nav-link" href="@Url.Action("Roles", "Roles")" style="color: #FFF;">Roles</a>
+                                    @if (Session["Rol"] != null && Session["Rol"].ToString() == "Administrador")
+                                    { 
+                                        <a class="nav-link" href="@Url.Action("Roles", "Roles")" style="color: #FFF;">Roles</a>
                                     <a class="nav-link" href="@Url.Action("VistaPermisos", "Permisos")" style="color: #FFF;">Permisos</a>
+                                    }
                                 </nav>
                             </div>
                         }

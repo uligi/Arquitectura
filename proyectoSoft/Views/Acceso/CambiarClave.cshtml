@@ -93,6 +93,9 @@
                                                     <input class="form-control validar-password" id="inputPassword1" type="password" name="nuevaClave" />
                                                     <label for="inputPassword">Nueva Contraseña</label>
                                                 </div>
+                                                <div id="passwordHelp" class="form-text text-danger" style="display: none;">
+                                                    La contraseña debe tener mínimo 8 caracteres, al menos un número y un carácter especial.
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -134,5 +137,24 @@
         </div>
     </div>
     <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('inputPassword1');
+    const passwordHelp = document.getElementById('passwordHelp');
+
+    // Validación en tiempo real
+    passwordInput.addEventListener('input', () => {
+        const password = passwordInput.value;
+        const regex = /^(?=.*[0-9])(?=.*[!#$%^&*])(?=.*[A-Za-z])[A-Za-z\d!#$%^&*]{8,}$/;
+
+        if (!regex.test(password)) {
+            passwordHelp.style.display = 'block';
+        } else {
+            passwordHelp.style.display = 'none';
+        }
+    });
+});
+
+    </script>
 </body>
 </html>

@@ -84,12 +84,24 @@
         </div>
     </div>
 </div>
+@{
+    string accionesHtml = "<div class=\"btn-group\">";
+    if (Session["Rol"] != null && Session["Rol"].ToString() == "Administrador")
+    {
+        accionesHtml += "<button type=\"button\" class=\"btn btn-primary btn-small btn-editar\"><i class=\"fas fa-pen\"></i></button>";
+        accionesHtml += "<button type=\"button\" class=\"btn btn-danger btn-small ms-2 btn-eliminar\"><i class=\"fas fa-trash\"></i></button>";
+    }
+    accionesHtml += "<button type=\"button\" class=\"btn btn-info btn-small ms-2 btn-restablecer\"><i class=\"fas fa-key\"></i></button>";
+    accionesHtml += "</div>";
+}
 
 @section scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <!-- Incluye la librería de SweetAlert si no lo has hecho -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+
+
         var tabladata;
         $(document).ready(function () {
             tabladata = $("#tabla").DataTable({
@@ -133,11 +145,7 @@
                         }
                     },
                     {
-                        "defaultContent": '<div class="btn-group">' +
-                                          '<button type="button" class="btn btn-primary btn-small btn-editar"><i class="fas fa-pen"></i></button>' +
-                                          '<button type="button" class="btn btn-danger btn-small ms-2 btn-eliminar"><i class="fas fa-trash"></i></button>' +
-                                          '<button type="button" class="btn btn-info btn-small ms-2 btn-restablecer"><i class="fas fa-key"></i></button>' +
-                                          '</div>',
+                        "defaultContent": @Html.Raw(Json.Encode(accionesHtml)),
                         "orderable": false,
                         "searchable": false,
                         "width": "150px"
@@ -294,7 +302,7 @@
 
         function fetchRoles() {
             $.ajax({
-                url: '@Url.Action("ListarRoles", "Usuario")', 
+                url: '@Url.Action("ListarRoles", "Usuario")',
                 type: "GET",
                 success: function (data) {
                     let rolSelect = $("#rolID");
