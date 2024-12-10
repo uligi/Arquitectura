@@ -95,6 +95,15 @@
                         <option value="1.1.2">Inversiones a corto plazo</option>
                     </select>
                 </div>
+                <!-- Subcuenta -->
+                <div class="col-6">
+                    <label for="Subcuenta" class="form-label">Subcuenta</label>
+                    <select class="form-control" id="Subcuenta" onchange="actualizarCodigoCuenta()">
+                        <option value="">Seleccione una Subcuenta</option>
+                        <option value="01">Caja Nacional</option>
+                        <option value="02">Caja Extranjera</option>
+                    </select>
+                </div>
 
                 <!-- Código Padre -->
                 <div class="col-12">
@@ -201,42 +210,46 @@
 
 
 
-          function Guardar() {
-            var cuenta = {
-                CuentaID: parseInt($("#CuentaID").val()),
-                CodigoCuenta: $("#CodigoCuenta").val().trim(),
-                DescripcionCuenta: $("#DescripcionCuenta").val().trim(),
-                Clase: $("#Clase").val(),
-                Grupo: $("#Grupo").val(),
-                Rubro: $("#Rubro").val(),
-                CodigoPadre: $("#CodigoPadre").val(),
-                Nivel: parseInt($("#Nivel").val()),
-                SaldoInicial: parseFloat($("#SaldoInicial").val())
-            };
+         function Guardar() {
+    var cuenta = {
+        CuentaID: parseInt($("#CuentaID").val()),
+        CodigoCuenta: $("#CodigoCuenta").val().trim(), // Usar .val() para inputs
+        DescripcionCuenta: $("#DescripcionCuenta").val().trim(),
+        Clase: $("#Clase").find(":selected").text(), // Para select, usa .find(":selected").text()
+        Grupo: $("#Grupo").find(":selected").text(),
+        Rubro: $("#Rubro").find(":selected").text(),
+        Subcuenta: $("#Subcuenta").find(":selected").text(),
+        CodigoPadre: $("#CodigoPadre").find(":selected").text(),
+        Nivel: parseInt($("#Nivel").val()),
+        SaldoInicial: parseFloat($("#SaldoInicial").val())
+    };
 
-            if (!cuenta.CodigoCuenta || !cuenta.DescripcionCuenta || !cuenta.Clase || !cuenta.Grupo || !cuenta.Rubro) {
-                $("#mensajeError").text("Todos los campos obligatorios deben ser completados.").show();
-                return;
+    if (!cuenta.CodigoCuenta || !cuenta.DescripcionCuenta || !cuenta.Clase || !cuenta.Grupo || !cuenta.Rubro || !cuenta.Subcuenta) {
+        $("#mensajeError").text("Todos los campos obligatorios deben ser completados.").show();
+        return;
+    }
+
+    // Enviar datos al backend
+    $.ajax({
+        url: '@Url.Action("GuardarCuenta", "CuentasContables")',
+        type: "POST",
+        data: JSON.stringify(cuenta),
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            if (response.resultado > 0) {
+                tablaCuentas.ajax.reload();
+                $("#FormModal").modal("hide");
+            } else {
+                $("#mensajeError").text(response.mensaje).show();
             }
-
-            $.ajax({
-                url: '@Url.Action("GuardarCuenta", "CuentasContables")',
-                type: "POST",
-                data: JSON.stringify(cuenta),
-                contentType: "application/json; charset=utf-8",
-                success: function (response) {
-                    if (response.resultado > 0) {
-                        tablaCuentas.ajax.reload();
-                        $("#FormModal").modal("hide");
-                    } else {
-                        $("#mensajeError").text(response.mensaje).show();
-                    }
-                },
-                error: function () {
-                    $("#mensajeError").text("Hubo un error al procesar la solicitud.").show();
-                }
-            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error al guardar la cuenta:", xhr.responseText);
+            $("#mensajeError").text("Hubo un error al procesar la solicitud.").show();
         }
+    });
+}
+
 
 
         function cargarCodigosPadre() {
@@ -265,17 +278,24 @@
             var clase = $("#Clase").val();
             var grupo = $("#Grupo").val();
             var rubro = $("#Rubro").val();
+            var subcuenta = $("#Subcuenta").val(); // Captura el valor seleccionado de Subcuenta
+
+            var codigoCuenta = ""; // Inicializa el código de cuenta
 
             if (clase && grupo && rubro) {
-                $("#CodigoCuenta").val(`${clase}.${grupo}.${rubro}`);
-            } else {
-                $("#CodigoCuenta").val(""); // Limpiar si falta algún dato
+                codigoCuenta = `${clase}.${grupo}.${rubro}`;
+                if (subcuenta) {
+                    codigoCuenta += `.${subcuenta}`; // Agrega la subcuenta al código si está seleccionada
+                }
             }
 
-            // Determinar el nivel de la cuenta automáticamente
-            var nivel = rubro.split('.').length;
+            $("#CodigoCuenta").val(codigoCuenta); // Asigna el código generado al input de CódigoCuenta
+
+            // Determinar el nivel de la cuenta automáticamente basado en los puntos (.)
+            var nivel = codigoCuenta ? (codigoCuenta.match(/\./g) || []).length + 1 : 1;
             $("#Nivel").val(nivel);
         }
+
 
 
 
